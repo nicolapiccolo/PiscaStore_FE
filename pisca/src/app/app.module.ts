@@ -9,38 +9,35 @@ import {CategoryService} from "./service/category.service";
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardUserComponent } from './board-user/board-user.component';
 
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardUserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    SocialLoginModule
+    ReactiveFormsModule
   ],
   providers: [
-    {
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            '88968581162-nn91gvn74h74nu40ald23ss6faq5dk3a.apps.googleusercontent.com'
-            )
-         }
-        ]
-      } as SocialAuthServiceConfig,
-    },
+    authInterceptorProviders,
     CategoryService],
   bootstrap: [AppComponent]
 })
