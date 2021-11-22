@@ -18,6 +18,9 @@ export class AuthService {
     console.log('ciao')
   }
 
+  getAddresses(): Observable<any>{
+    return this.http.get(AUTH_API + 'user/addresses');
+  }
 
 
   login(username: string, password: string): Observable<any> {

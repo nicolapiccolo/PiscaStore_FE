@@ -33,15 +33,9 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     const { name, surname, username, email, password, phone, street, city, country, zipCode } = this.form;
 
-    var address : Address = new Address();
-    address.street = this.form.street;
-    address.city = this.form.city;
-    address.country = this.form.country;
-    address.zipCode = this.form.zipCode;
+    var address : Address = new Address(this.form.street,this.form.city, this.form.country, this.form.zipCode);
 
-
-
-    console.log('ciaoooo');
+    console.log('registering');
 
     this.authService.register(name, surname, username, email, password, phone, address).subscribe(
       data => {

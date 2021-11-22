@@ -49,20 +49,22 @@
               <h6 class="mb-0">Mobile</h6>
             </div>
             <div class="col-sm-9 text-secondary">
-              (320) 380-4539
+              {{ currentUser.phone }}
             </div>
           </div>
           <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Address</h6>
+          <div *ngIf="addressAvailable">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary" style="white-space: pre-line">
+                {{ currentUser.address }}
+              </div>
             </div>
-            <div class="col-sm-9 text-secondary">
-              Bay Area, San Francisco, CA
-            </div>
+            <hr>
           </div>
-          <hr>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-sm-3">
               <h6 class="mb-0">Roles</h6>
             </div>
@@ -74,7 +76,7 @@
               </ul>
             </div>
           </div>
-          <hr>
+          <hr> -->
           <div class="row">
             <div class="col-sm-12">
               <a class="btn btn-info " target="__blank" href="#modifyprofile">Edit</a>
