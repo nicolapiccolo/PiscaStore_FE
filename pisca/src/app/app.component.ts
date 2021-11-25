@@ -29,6 +29,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  refresh(path: string): void{
+    if (window.location.pathname.toString() == path){
+      window.location.reload()
+    }
+    console.log(window.location.pathname.toString())
+    console.log("/profile")
+  }
+
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();

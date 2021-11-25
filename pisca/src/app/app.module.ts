@@ -17,6 +17,8 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { HomeComponent } from './home/home.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import {CanDeactivateGuard} from "./can-deactivate/can-deactivate.guard";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { HomeComponent } from './home/home.component';
   ],
   providers: [
     authInterceptorProviders,
+    CanDeactivateGuard,
     CategoryService],
   bootstrap: [AppComponent]
 })
