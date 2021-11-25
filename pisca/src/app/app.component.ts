@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
     if (window.location.pathname.toString() == path){
       window.location.reload()
     }
-    console.log(window.location.pathname.toString())
-    console.log("/profile")
   }
 
   logout(): void {

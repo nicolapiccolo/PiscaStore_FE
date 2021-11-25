@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
+import {LoadingService} from "../service/loading.service";
 
 @Component({
   selector: 'app-board-admin',
@@ -10,7 +11,10 @@ import {UserService} from "../service/user.service";
 export class BoardAdminComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  loading$ = this.loader.loading$;
+
+
+  constructor(private userService: UserService,public loader: LoadingService) { }
 
   ngOnInit(): void {
     this.userService.getAdminBoard().subscribe(

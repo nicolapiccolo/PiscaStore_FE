@@ -5,6 +5,7 @@ import {Address} from "../model/address";
 import {AccountService} from "../service/account.service";
 import {FormCanDeactivate} from "../form-can-deactivate/form-can-deactivate";
 import {NgForm} from "@angular/forms";
+import {LoadingService} from "../service/loading.service";
 
 @Component({
   selector: 'app-profile',
@@ -33,7 +34,9 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
   @ViewChild('form')
   form: any;
 
-  constructor(private accountService: AccountService, private token: TokenStorageService) {
+  loading$ = this.loader.loading$;
+
+  constructor(private accountService: AccountService, private token: TokenStorageService, public loader: LoadingService) {
     super();
   }
 
