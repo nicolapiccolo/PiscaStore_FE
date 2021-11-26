@@ -59,3 +59,24 @@ body{
 .shadow-none {
   box-shadow: none!important;
 }
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border{
+  width: 5rem;
+  height: 5rem;
+}
+
+.spinner-grow{
+  width: 5rem;
+  height: 5rem;
+}

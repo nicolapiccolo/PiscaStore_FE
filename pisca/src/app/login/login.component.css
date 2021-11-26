@@ -4,6 +4,7 @@
 }
 .login-form-1{
   padding: 5%;
+  margin: auto;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form-1 h3{
@@ -49,4 +50,25 @@
   color: #0062cc;
   font-weight: 600;
   text-decoration: none;
+}
+
+.spinner {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border{
+  width: 5rem;
+  height: 5rem;
+}
+
+.spinner-grow{
+  width: 5rem;
+  height: 5rem;
 }

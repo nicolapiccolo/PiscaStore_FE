@@ -7,7 +7,18 @@
   </header>
   -->
 
-  <div class="container">
+
+  <div class="spinner" *ngIf="loading$ | async" >
+    <div class="spinner-border" role="status"  >
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="container" *ngIf="! (loading$ | async)">
 
     <div class="child">
       <div class="card">
@@ -25,62 +36,183 @@
 
     <div class="child">
         <div class="card mb-3">
-          <div class="card-body">
+
+          <ng-template [ngIf]="!isEditing" #profileoverview>
+
+            <div class="card-body" *ngIf="!isEditing">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ currentUser.name }} {{ currentUser.surname }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ currentUser.email }}
+                </div>
+              </div>
+              <hr>
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Full Name</h6>
+                <h6 class="mb-0">Mobile</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ currentUser.name }} {{ currentUser.surname }}
+                {{ currentUser.phone }}
               </div>
             </div>
             <hr>
+            <div *ngIf="addressAvailable">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary" style="white-space: pre-line">
+                  {{ currentUser.address }}
+                </div>
+              </div>
+              <hr>
+            </div>
+            <!--<div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Roles</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <ul>
+                  <li *ngFor="let role of currentUser.roles">
+                    {{ role }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr> -->
             <div class="row">
+              <div class="col-sm-12">
+                <button class="btn btn-primary px-4" (click)="showEdit()">Edit Profile</button>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template [ngIf]="isEditing" #profileupdate>
+
+          <form
+            #form="ngForm"
+            (ngSubmit)="onSubmit()">
+
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="name"
+                       [(ngModel)]="name"
+                       />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Surname</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="surname"
+                       [(ngModel)]="surname"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0">Email</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ currentUser.email }}
+                <input type="text" class="form-control"
+                       name="email"
+                       [(ngModel)]="email"
+                       />
               </div>
             </div>
-            <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Mobile</h6>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="phone"
+                       [(ngModel)]="phone"
+                       />
+              </div>
             </div>
-            <div class="col-sm-9 text-secondary">
-              (320) 380-4539
+
+            <div class="row mb-3" >
+              <div class="col-sm-3">
+                <h6 class="mb-0">Country</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="country"
+                       [(ngModel)]="country"
+                />
+              </div>
+            </div>
+
+
+            <div class="row mb-3" >
+              <div class="col-sm-3">
+                <h6 class="mb-0">Street</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="street"
+                       [(ngModel)]="street"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3" >
+              <div class="col-sm-3">
+                <h6 class="mb-0">City</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="city"
+                       [(ngModel)]="city"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3" >
+              <div class="col-sm-3">
+                <h6 class="mb-0">Zip Code</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control"
+                       name="zipCode"
+                       [(ngModel)]="zipCode"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9 text-secondary">
+                <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+              </div>
             </div>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Address</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              Bay Area, San Francisco, CA
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Roles</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              <ul>
-                <li *ngFor="let role of currentUser.roles">
-                  {{ role }}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-12">
-              <a class="btn btn-info " target="__blank" href="#modifyprofile">Edit</a>
-            </div>
-          </div>
-        </div>
+          </form>
+        </ng-template>
+
       </div>
     </div>
 

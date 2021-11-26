@@ -4,12 +4,14 @@ import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 
 import { TokenStorageService } from '../service/token-storage.service';
 import { Observable } from 'rxjs';
+import {LoadingService} from "../service/loading.service";
+import {finalize} from "rxjs/operators";
 
 const TOKEN_HEADER_KEY = 'Authorization';       // for Spring Boot back-end
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService, private loader: LoadingService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
@@ -19,7 +21,13 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
 
     }
-    return next.handle(authReq);
+
+    this.loader.show();
+
+    return next.handle(authReq).pipe(
+      finalize(() => {
+      this.loader.hide();
+    }));
   }
 }
 

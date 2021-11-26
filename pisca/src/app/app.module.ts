@@ -17,6 +17,10 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { HomeComponent } from './home/home.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import {CanDeactivateGuard} from "./can-deactivate/can-deactivate.guard";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -27,17 +31,21 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     authInterceptorProviders,
+    CanDeactivateGuard,
     CategoryService],
   bootstrap: [AppComponent]
 })
