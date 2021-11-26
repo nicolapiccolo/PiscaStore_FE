@@ -8,8 +8,18 @@
   <div class="row">
     <div class="col-md-6 login-form-1">
       <h3>Login</h3>
+
+      <div class="spinner" *ngIf="loading$ | async" >
+        <div class="spinner-border" role="status"  >
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
       <form
-        *ngIf="!isLoggedIn"
+        *ngIf="!isLoggedIn && !(loading$ | async)"
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"

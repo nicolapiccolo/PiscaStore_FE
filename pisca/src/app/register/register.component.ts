@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../service/auth.service";
 import {Address} from "../model/address";
+import {Router} from "@angular/router";
+import {LoadingService} from "../service/loading.service";
 
 @Component({
   selector: 'app-register',
@@ -25,7 +27,10 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  loading$ = this.loader.loading$;
+
+
+  constructor(private authService: AuthService, public loader: LoadingService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +47,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        //this.router.navigateByUrl()
       },
       err => {
         this.errorMessage = err.error.message;
