@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {TokenStorageService} from "./token-storage.service";
 
-const API_URL = 'http://localhost:8081/test/';
+const API_URL = 'http://localhost:8080/user-service/test/';
 
 @Injectable({
   providedIn: 'root'

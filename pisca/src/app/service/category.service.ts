@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const API_URL = 'http://localhost:8082/api/v1/';
+const API_URL = 'http://localhost:8080/catalog/api/v1/';
 
 @Injectable({
   providedIn: 'root'
