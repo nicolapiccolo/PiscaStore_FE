@@ -1,38 +1,77 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">PiscaStore</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home" (click)="refresh('/home')">Home </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin" (click)="refresh('/admin')">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod" (click)="refresh('/mod')" >Moderator Board</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" (click)="refresh('/user')">User</a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register" (click)="refresh('/register')">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">Login</a>
-      </li>
-    </ul>
+      <a class="navbar-brand" href="#">PiscaStore</a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile" (click)="refresh('/profile')">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
+      <div class="navbar-collapse collapse flex-grow-1 justify-content-center">
+
+        <ul class="navbar-nav mx-auto" routerLinkActive="active">
+          <li class="nav-item">
+            <a href="/catalog" class="nav-link" routerLink="catalog" (click)="refresh('/catalog')">home</a>
+          </li>
+          <!--<li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/admin" class="nav-link" routerLink="admin" (click)="refresh('/admin')">admin</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/mod" class="nav-link" routerLink="mod" (click)="refresh('/mod')" >mode</a>
+          </li>
+          <li class="nav-item">
+            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" (click)="refresh('/user')">user</a>
+          </li>-->
+          <li class="nav-item">
+            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">painting</a>
+          </li>
+          <li class="nav-item">
+            <a href="/catalog/category/2" class="nav-link" routerLink="catalog/category/2" (click)="refresh('/catalog/category/2')">ceramics</a>
+          </li>
+          <li class="nav-item">
+            <a href="/catalog/category/3" class="nav-link" routerLink="catalog/category/3" (click)="refresh('/catalog/category/3')">decors</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="right-nav">
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a href="/register" class="nav-link" routerLink="register" (click)="refresh('/register')">sign up</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">login</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+
+        <div class="btn-group dropstart">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Inter">
+            {{username}}
+          </a>
+          <ul class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <li><a class="dropdown-item" href="/profile" routerLink="profile">Il mio profilo</a></li>
+            <li><a class="dropdown-item" href="#">I miei ordini</a></li>
+            <li><a class="dropdown-item" href="#">I miei articoli</a></li>
+            <li><a class="dropdown-item" href="/product_insert" routerLink="product_insert">Vendi un articolo</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" (click)="logout()">LogOut</a></li>
+          </ul>
+        </div>
+
+      </ul>
+    </div>
   </nav>
 
   <div class="center">

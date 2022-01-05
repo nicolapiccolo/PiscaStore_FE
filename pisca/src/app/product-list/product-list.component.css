@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444444;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid {
+  margin-left: 50px;
+  margin-right: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Create 2 columns and auto-place rows */
+}
+
+.section-products {
+  padding: 80px 0 54px;
+}
+
+.section-products .single-product {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.section-products .product-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;}
+
+.section-products .single-product .part-2 h3{
+  font-weight: bold;
+  text-align: center;
+}
+
+.section-products .single-product .part-2 h4{
+  font-weight: lighter;
+  text-align: center;
+
+}
+
+.spinner {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border{
+  width: 5rem;
+  height: 5rem;
+}
+
+.spinner-grow{
+  width: 5rem;
+  height: 5rem;
+}
+
+

@@ -21,6 +21,11 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import {CanDeactivateGuard} from "./can-deactivate/can-deactivate.guard";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductInsertComponent } from './product-insert/product-insert.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +37,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     BoardAdminComponent,
     BoardUserComponent,
     HomeComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    ProductInsertComponent,
   ],
   imports: [
     BrowserModule,

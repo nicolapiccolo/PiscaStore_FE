@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+.navbar-brand{
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  color: #6D5D58;
+
+}
+
+.nav-item .nav-link{
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 34px;
+
+  color: #6D5D58;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.right-nav .nav-item .nav-link{
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 34px;
+
+  color: #6D5D58;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dropdown-menu{
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #6D5D58;
+
+}
+
+.nav-link .dropdown-toggle{
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  color: #6D5D58;
+}

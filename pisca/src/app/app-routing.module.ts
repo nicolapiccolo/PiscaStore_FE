@@ -9,6 +9,9 @@ import {BoardUserComponent} from "./board-user/board-user.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileEditComponent} from "./profile-edit/profile-edit.component";
 import {CanDeactivateGuard} from "./can-deactivate/can-deactivate.guard";
+import {ProductListComponent} from "./product-list/product-list.component";
+import {ProductDetailsComponent} from "./product-details/product-details.component";
+import {ProductInsertComponent} from "./product-insert/product-insert.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +22,10 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'profile_edit', component: ProfileEditComponent},
+  { path: 'catalog', component: ProductListComponent},
+  { path: 'catalog/category/:id', component: ProductListComponent},
+  { path: 'catalog/:id', component:ProductDetailsComponent},
+  { path: 'product_insert', component: ProductInsertComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
