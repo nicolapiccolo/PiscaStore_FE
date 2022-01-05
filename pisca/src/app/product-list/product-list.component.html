@@ -1,0 +1,29 @@
+<section class="section-products">
+
+  <div class="spinner" *ngIf="loading$ | async" >
+    <div class="spinner-border" role="status"  >
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="grid" *ngIf="!(loading$ | async)">
+      <ng-container *ngFor="let product of products">
+        <div class="single-product" (click)="openDetails(product.id)">
+          <figure class="product__figure">
+            <img *ngIf="product.image" class="product-image" [routerLink]="['/catalog', product.id]" [src]="product.image" alt="" width = "300" height = "300" />
+          </figure>
+          <a>
+            <div class="part-2" [routerLink]="['/catalog', product.id]">
+              <h3 class="product-title">{{ product.name }}</h3>
+              <h4 class="product-price">{{ product.price | currency: 'EUR' }}</h4>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+  </div>
+
+</section>

@@ -3,23 +3,31 @@ import {Category} from "../model/category";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+const API_URL = 'http://localhost:8082/api/v1/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private categoryUrl: string;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    this.categoryUrl = 'http://localhost:8080/category';
+
+  public findAll(): Observable<any> {
+    return this.http.get<any>(API_URL + "categories");
   }
 
-  public findAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoryUrl);
+  public findById(id: number): Observable<any> {
+    return this.http.get<any>(API_URL + "category",
+      {  headers: new HttpHeaders({ 'Content-Type': 'application/json' }) ,params:{id}})
   }
 
-  public save(category: Category) {
-    return this.http.post<Category>(this.categoryUrl, category);
+  public findByName(name: string): Observable<any> {
+    return this.http.get<any>(API_URL + "categories/" + name,httpOptions)
   }
+
 }

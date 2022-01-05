@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="product_image">
+        <<img src='https://i.ibb.co/gvyC8mn/insert.png' alt="" width = "382" height = "592">
+      </div>
+    </div>
+    <div class="col">
+
+      <h3 class="title">Dettagli Articolo</h3>
+
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter Title of your handcraft">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" placeholder="Enter a description of your handcraft"></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <label for="dimensions">Dimensions</label>
+              <input type="text" class="form-control" id="dimensions" placeholder="Enter the dimensions of your handcraft">
+            </div>
+            <div class="col">
+              <label for="menu_cat">Category</label>
+              <select class="form-control" id="menu_cat">
+                <option *ngFor="let category of categories">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="price">Price</label>
+          <span class="input-number input-number-currency">
+              <input type="number" class="form-control" id="price" placeholder="Enter the price of your handcraft"  aria-describedby="priceHelp">
+              <small id="priceHelp" class="form-text text-muted">The price must include shipment cost</small>
+            </span>
+        </div>
+
+
+
+        <button class="button"><span>Vendi ! </span></button>
+
+
+      </form>
+    </div>
+
+
+</div>
