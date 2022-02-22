@@ -3,6 +3,7 @@
 .container{
   font-family: Inter, sans-serif;
   margin-top:50px;
+  margin-bottom: 100px;
 }
 
 .container .title{
@@ -32,6 +33,7 @@
   cursor: pointer;
   margin-top: 20px;
   vertical-align:middle;
+  margin-bottom: 70px;
 }
 
 .button span {
