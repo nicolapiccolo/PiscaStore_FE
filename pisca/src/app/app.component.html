@@ -15,9 +15,6 @@
       <div class="navbar-collapse collapse flex-grow-1 justify-content-center">
 
         <ul class="navbar-nav mx-auto" routerLinkActive="active">
-          <li class="nav-item">
-            <a href="/catalog" class="nav-link" routerLink="catalog" (click)="refresh('/catalog')">home</a>
-          </li>
           <!--<li class="nav-item" *ngIf="showAdminBoard">
             <a href="/admin" class="nav-link" routerLink="admin" (click)="refresh('/admin')">admin</a>
           </li>
@@ -27,6 +24,9 @@
           <li class="nav-item">
             <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" (click)="refresh('/user')">user</a>
           </li>-->
+          <li class="nav-item">
+            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">newest</a>
+          </li>
           <li class="nav-item">
             <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">painting</a>
           </li>
@@ -42,10 +42,7 @@
       <div class="right-nav">
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
           <li class="nav-item">
-            <a href="/register" class="nav-link" routerLink="register" (click)="refresh('/register')">sign up</a>
-          </li>
-          <li class="nav-item">
-            <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">login</a>
+            <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">Sign in/Sign up</a>
           </li>
         </ul>
       </div>

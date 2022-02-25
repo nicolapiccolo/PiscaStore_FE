@@ -1,5 +1,24 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="header-container" xmlns="http://www.w3.org/1999/html">
+  <div class="wrapper">
+    <header>
+
+      <div class="image-stack">
+        <div class="image-stack__item image-stack__item--bottom">
+          <img src="../../assets/Images/image1.png" alt="">
+        </div>
+
+        <div class="image-stack__item image-stack__item--top">
+          <img src="../../assets/Images/PISCASTORE.svg" alt="">
+        </div>
+        <a href="/catalog/category/1" routerLink="/catalog/category/1" (click)="refresh('/catalog/category/1')">get inspired</a>
+      </div>
+    </header>
+
+  </div>
 </div>
+<div class="footer">
+  <img src="../../assets/Images/HANDMADE.svg" alt=""/>
+  <img src="../../assets/Images/FOR.svg" alt="" class="center"/>
+  <img src="../../assets/Images/YOU.svg" alt="" class="right"/>
+</div>
+
