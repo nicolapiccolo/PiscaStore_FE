@@ -57,4 +57,10 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  refresh(path: string): void{
+    if (window.location.pathname.toString() == path){
+      window.location.reload()
+    }
+  }
 }

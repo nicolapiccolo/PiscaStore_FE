@@ -14,7 +14,7 @@
 
       <div class="navbar-collapse collapse flex-grow-1 justify-content-center">
 
-        <ul class="navbar-nav mx-auto" routerLinkActive="active">
+ <ul class="navbar-nav mx-auto" routerLinkActive="active">
           <li class="nav-item">
             <a href="/catalog" class="nav-link" routerLink="catalog" (click)="refresh('/catalog')">home</a>
           </li>
@@ -45,10 +45,7 @@
       <div class="right-nav">
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
           <li class="nav-item">
-            <a href="/register" class="nav-link" routerLink="register" (click)="refresh('/register')">sign up</a>
-          </li>
-          <li class="nav-item">
-            <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">login</a>
+            <a href="/login" class="nav-link" routerLink="login" (click)="refresh('/login')">Sign in/Sign up</a>
           </li>
         </ul>
       </div>
