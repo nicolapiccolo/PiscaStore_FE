@@ -12,26 +12,28 @@
     <div class="row" *ngIf="!(loading$ | async)">
       <div class="col-sm">
         <div class="product_image">
-          <img *ngIf="productData?.product?.image" [src]="productData?.product?.image" alt="" width = "550" height = "550">
+          <img *ngIf="!product?.image" src='http://localhost:8080/catalog/api/v1/image/not.png' alt="" width = "550" height = "550">
+          <img *ngIf="product?.image" src='http://localhost:8080/catalog/api/v1/image/{{product?.image}}' onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" alt="" width = "550" height = "550">
+
         </div>
       </div>
       <div class="col-sm">
         <div class="product_detail">
           <div class="top">
             <a (click)="onBack()" class="previous">&#8592;  BACK</a>
-            <h4 class="product_title">{{productData?.product?.name}}</h4>
-            <h4 class="product_author">{{productData?.author?.name}} {{productData?.author?.surname}}</h4>
+            <h4 class="product_title">{{product?.name}}</h4>
+            <h4 class="product_author">{{author?.name}} {{author?.surname}}</h4>
           </div>
 
           <div class="middle">
-            <h4 class="product_dimension">{{productData?.product?.dimensions}}</h4>
-            <p class="product_description">{{productData?.product?.description}}</p>
+            <h4 class="product_dimension">{{product?.dimensions}}</h4>
+            <p class="product_description">{{product?.description}}</p>
           </div>
 
           <hr>
 
           <div class="bottom">
-            <h4 class="product_price">€ {{productData?.product?.price}}</h4>
+            <h4 class="product_price">€ {{product?.price}}</h4>
             <button class="button"><span>ADD TO CART </span></button>
           </div>
         </div>

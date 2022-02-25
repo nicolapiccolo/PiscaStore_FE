@@ -11,6 +11,7 @@ import {LoadingService} from "../service/loading.service";
 })
 
 export class RegisterComponent implements OnInit {
+
   form: any = {
     name: null,
     surname: null,
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
     country: null,
     zipCode: null
   };
+
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';

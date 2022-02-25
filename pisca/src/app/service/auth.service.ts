@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import {Address} from "../model/address";
 import {FormGroup} from "@angular/forms";
 
-const AUTH_API = 'http://localhost:8080/user-service/auth/';
+const AUTH_API = 'http://localhost:8081/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

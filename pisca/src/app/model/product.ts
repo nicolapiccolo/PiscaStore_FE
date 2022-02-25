@@ -30,7 +30,6 @@ export class Product{
     this.price = price;
     this.available = available;
     this.image = image;
-
   }
 
   toString(): string{
