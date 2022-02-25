@@ -1,15 +1,13 @@
-import {Author} from "./author";
-import {Category} from "./category";
 import {Product} from "./product";
 
 export class ProductData{
   product: Product | undefined;
-  author: Author | undefined;
-  category: Category | undefined;
+  id_author: number;
+  category: string;
 
-  constructor (product: Product, author: Author, category: Category){
+  constructor (product: Product, id_author: number, category: string){
     this.product = product;
-    this.author = author;
+    this.id_author = id_author;
     this.category = category;
   }
 

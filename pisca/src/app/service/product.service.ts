@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import {Product} from "../model/product";
+import {ProductData} from "../model/productData";
 
 
 const httpOptions = {
@@ -39,6 +41,19 @@ export class ProductService {
 
   public findById(id: number): Observable<any> {
     return this.http.get<any>(API_URL + "products/" + id,httpOptions)
+  }
+
+  public createProduct(product: ProductData) : Observable<any> {
+
+
+    const req = new HttpRequest('POST', `${API_URL}products/create`, product, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+    console.log(req)
+    return this.http.request(req)
+
+
   }
 
 }

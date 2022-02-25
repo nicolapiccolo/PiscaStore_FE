@@ -7,6 +7,7 @@ import {CategoryService} from "../service/category.service";
 import {ProductData} from "../model/productData";
 import {Author} from "../model/author";
 import {LoadingService} from "../service/loading.service";
+import {Category} from "../model/category";
 
 @Component({
   selector: 'app-product-details',
@@ -15,8 +16,11 @@ import {LoadingService} from "../service/loading.service";
 })
 export class ProductDetailsComponent implements OnInit {
 
-  productData: ProductData = {product:undefined,category:undefined,author:undefined};
   errorMessage = "";
+
+  product?: Product;
+  author?: Author ;
+  category?: Category;
 
   loading$ = this.loader.loading$;
 
@@ -32,9 +36,9 @@ export class ProductDetailsComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'))
     if(id){
       this.productService.findById(id).subscribe(data => {
-          //this.productData = new ProductData(data.product,this.getAuthor(data.id_author),this.getCategory(data.category))
           //console.log(data)
-          this.productData.product = data.product;
+
+          this.product = data.product;
           this.getAuthor(data.id_author);
           this.getCategory(data.category);
       })
@@ -44,14 +48,14 @@ export class ProductDetailsComponent implements OnInit {
   getAuthor(id: number): void {
     this.authorService.findById(id).subscribe(data => {
       console.log("Author ",data)
-      this.productData.author = data;
+      this.author = data;
     })
   }
 
   getCategory(name: string): void {
     this.categoryService.findByName(name).subscribe(data => {
       console.log("Category ",data)
-      this.productData.category = data;
+      this.category = data;
     })
   }
 

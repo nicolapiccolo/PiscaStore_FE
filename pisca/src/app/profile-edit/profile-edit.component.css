@@ -25,3 +25,10 @@ body{
 .me-2 {
   margin-right: .5rem!important;
 }
+
+.alert {
+  margin-bottom: 1px;
+  height: 30px;
+  line-height:30px;
+  padding:0px 15px;
+}

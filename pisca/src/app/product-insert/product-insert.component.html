@@ -3,35 +3,84 @@
     <div class="col">
       <div class="product_image">
         <!--https://i.ibb.co/gvyC8mn/insert.png-->
-        <img src='http://localhost:8080/catalog//api/v1/image/image 3.png' alt="" width = "382" height = "592">
+        <img *ngIf="image" src='http://localhost:8080/catalog/api/v1/image/{{image}}' alt="" width = "382" height = "592">
       </div>
     </div>
     <div class="col">
 
       <h3 class="title">Dettagli Articolo</h3>
 
-      <form>
+      <form
+        *ngIf="!isSuccessful && !(loading$ | async)"
+        name="form"
+        (ngSubmit)="f.form.valid && createProduct()"
+        #f="ngForm"
+        novalidate>
+
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter Title of your handcraft">
+          <input type="text" class="form-control" id="name" placeholder="Enter Title of your handcraft"  name="name" [(ngModel)]="form.name"
+                 required
+                 minlength="3"
+                 #name="ngModel">
+
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="name.errors && f.submitted">
+            Name is required!
+          </div>
+
+
         </div>
 
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea class="form-control" id="description" placeholder="Enter a description of your handcraft"></textarea>
+          <textarea class="form-control" id="description" placeholder="Enter a description of your handcraft"   name="description" [(ngModel)]="form.description"
+                    required
+                    minlength="10"
+                    #description="ngModel"></textarea>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="description.errors && f.submitted">
+            Description is required!
+          </div>
+
         </div>
 
         <div class="form-group">
           <div class="form-row">
             <div class="col">
               <label for="dimensions">Dimensions</label>
-              <input type="text" class="form-control" id="dimensions" placeholder="Enter the dimensions of your handcraft">
+              <input type="text" class="form-control" id="dimensions" placeholder="Enter the dimensions of your handcraft" name="dimensions"  [(ngModel)]="form.dimensions"
+                     required
+                     minlength="2"
+                     #dimensions="ngModel">
+
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="dimensions.errors && f.submitted">
+                Dimensions are required!
+              </div>
+
             </div>
             <div class="col">
               <label for="menu_cat">Category</label>
-              <select class="form-control" id="menu_cat">
-                <option *ngFor="let category of categories">{{category.name}}</option>
+
+              <select class="form-control" id="menu_cat" (change)="updateCategory($event)">
+                <option value=" ">----</option>
+                <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
               </select>
+
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="!selectedCategory && f.submitted">
+                Please select a category!
+              </div>
+
             </div>
           </div>
         </div>
@@ -40,30 +89,68 @@
         <div class="form-group">
           <label for="price">Price</label>
           <span class="input-number input-number-currency">
-              <input type="number" class="form-control" id="price" placeholder="Enter the price of your handcraft"  aria-describedby="priceHelp">
+              <input type="number" class="form-control" id="price" placeholder="Enter the price of your handcraft"  name="price" aria-describedby="priceHelp"
+                     [(ngModel)]="form.price"
+                     required
+                     minlength="2"
+                     #price="ngModel">
               <small id="priceHelp" class="form-text text-muted">The price must include shipment cost</small>
             </span>
+
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="price.errors && f.submitted">
+            Price is required!
+          </div>
+
         </div>
 
         <div class="form-group">
-          <div *ngIf="currentFile" class="progress">
+
+          <label for="image">Images</label>
+
+          <div class="row">
+            <div class="col-auto">
+              <label class="btn btn-default p-0">
+                <input type="file" (change)="selectFile($event)" />
+              </label>
+            </div>
+
+            <div class="col-auto">
+              <button class="button_upload" [disabled]="!selectedFiles" (click)="upload()">
+                Upload
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="currentFile" class="progress my-3">
             <div
               class="progress-bar progress-bar-info progress-bar-striped"
               role="progressbar"
               attr.aria-valuenow="{{ progress }}"
               aria-valuemin="0"
               aria-valuemax="100"
-              [ngStyle]="{ width: progress + '%' }"> {{ progress }}% </div>
+              [ngStyle]="{ width: progress + '%' }"
+            >
+              {{ progress }}%
+            </div>
           </div>
-          <label class="btn btn-default">
-            <input type="file" (change)="selectFile($event)" />
-          </label>
-          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-            Upload
-          </button>
-          <div class="alert alert-light" role="alert">{{ message }}</div>
+
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="!currentFile && f.submitted">
+            Please uploat at least one image of product!
+          </div>
+
         </div>
-        <button class="button"><span>Vendi ! </span></button>
+
+
+        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+
+
+        <button type="submit" class="button"><span>Vendi ! </span></button>
 
 
       </form>

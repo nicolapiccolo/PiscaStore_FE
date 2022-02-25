@@ -17,7 +17,7 @@ export class ImageService {
   constructor(private http: HttpClient) {}
 
 
-  public findByName(name: string): Observable<any> {
+  public getImage(name: string): Observable<any> {
     return this.http.get<any>(API_URL + "image/" + name,httpOptions)
   }
 
