@@ -6,6 +6,10 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {ImageService} from "../service/image.service";
 import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import {Product} from "../model/product";
+import {ProductData} from "../model/productData";
+import {ProductService} from "../service/product.service";
+import {AccountService} from "../service/account.service";
 
 
 
@@ -29,61 +33,56 @@ export class ProductInsertComponent implements OnInit {
     "category":"Dipinti"
    */
 
-  categories?: Category[]
+  currentUser: number = 0
+
+  form: any = {
+    name: null,
+    description: null,
+    dimension: null,
+    price: null,
+  };
+
+
+  categories?: Category[];
+  selectedCategory: string = '';
 
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
   message = '';
-  fileInfos?: Observable<any>;
 
+
+  isSuccessful = false;
+  isFailed = false;
+  errorMessage = '';
+
+  loading$ = this.loader.loading$;
 
 
   images : string[] = [];
-  myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
-  });
 
+  image : string = "";
 
-  constructor(private categoryService: CategoryService, public loader: LoadingService, private imageService: ImageService, private http: HttpClient) { }
+  constructor(private categoryService: CategoryService,
+              public loader: LoadingService,
+              private imageService: ImageService,
+              private http: HttpClient,
+              private productService: ProductService,
+              private accountService: AccountService) { }
+
+  updateCategory(e : any){
+    this.selectedCategory = e.target.value.toString()
+  }
 
   ngOnInit(): void {
+    this.accountService.getCurrentUser().subscribe(data=>{
+      console.log("user: ",data)
+      this.currentUser = data
+    })
+
     this.categoryService.findAll().subscribe(data => {
       this.categories = data
     })
-  }
-
-  get f(){
-    return this.myForm.controls;
-  }
-
-  /*onFileChange(event:any) {
-    if (event.target.files && event.target.files[0]) {
-      var filesAmount = event.target.files.length;
-      for (let i = 0; i < filesAmount; i++) {
-        var reader = new FileReader();
-
-        reader.onload = (event:any) => {
-          console.log(event.target.result);
-          this.images.push(event.target.result);
-
-          this.myForm.patchValue({
-            fileSource: this.images
-          });
-        }
-
-        this.selectedFiles = event.target.files;
-        reader.readAsDataURL(event.target.files[i]);
-      }
-      this.selectedFile = event.target.files[0]
-
-    }
-  }*/
-
-  onFileChange(event: any) {
-    this.selectedFiles = event.target.files;
   }
 
   selectFile(event: any) {
@@ -91,27 +90,62 @@ export class ProductInsertComponent implements OnInit {
   }
 
   upload() {
-
     this.progress = 0;
-    this.currentFile = this.selectedFiles?.item(0)!;
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+      if (file) {
+        this.currentFile = file;
+        this.imageService.upload(this.currentFile).subscribe(
+          (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              this.progress = Math.round(100 * event.loaded / event.total);
+            } else if (event instanceof HttpResponse) {
+              this.message = "Upload file with success!";
+              this.image = event.body.message;
+            }
+          },
+          (err: any) => {
+            console.log(err);
+            this.progress = 0;
+            if (err.error && err.error.message) {
+              this.message = err.error.message;
+            } else {
+              this.message = 'Could not upload the file!';
+            }
+            this.currentFile = undefined;
+          });
+      }
+      this.selectedFiles = undefined;
+    }
+  }
 
-    this.imageService.upload(this.currentFile).subscribe(
-      event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.message = event.body.message;
-          //this.fileInfos = this.uploadService.getFiles();
-          console.log(this.message)
+  createProduct(){
+
+    if(this.currentUser > 0 ){
+      const product: Product = new Product(0, this.form.name, this.form.description, this.form.dimensions, this.form.price, true ,this.image)
+
+      const pData: ProductData = new ProductData(product,this.currentUser, this.selectedCategory)
+
+
+
+      this.productService.createProduct(pData).subscribe(
+        (event: any) =>{
+          if( event instanceof HttpResponse){
+            this.isSuccessful = true
+            console.log(event.body.message)
+          }
+        },
+        (err: any) =>{
+          if (err.error && err.error.message) {
+            console.log(err.error.message);
+          } else {
+            console.log('Error during creation');
+          }
         }
-      },
-      err => {
-        this.progress = 0;
-        this.message = 'Could not upload the file!';
-        this.currentFile = undefined;
-        console.log(this.message)
-      });
-    this.selectedFiles = undefined;
+      )
+    }
+    else console.log("Invalid current user")
+
   }
 
 }

@@ -14,7 +14,10 @@
 
       <div class="navbar-collapse collapse flex-grow-1 justify-content-center">
 
-        <ul class="navbar-nav mx-auto" routerLinkActive="active">
+ <ul class="navbar-nav mx-auto" routerLinkActive="active">
+          <li class="nav-item">
+            <a href="/catalog" class="nav-link" routerLink="catalog" (click)="refresh('/catalog')">home</a>
+          </li>
           <!--<li class="nav-item" *ngIf="showAdminBoard">
             <a href="/admin" class="nav-link" routerLink="admin" (click)="refresh('/admin')">admin</a>
           </li>
@@ -23,18 +26,18 @@
           </li>
           <li class="nav-item">
             <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" (click)="refresh('/user')">user</a>
+                      (click)="refresh('/catalog/category/1')
+
           </li>-->
+
           <li class="nav-item">
-            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">newest</a>
+            <a class="nav-link" routerLink="catalog/category/2"  (click)="refresh('/catalog/category/2')">painting</a>
           </li>
           <li class="nav-item">
-            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">painting</a>
+            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">ceramics</a>
           </li>
           <li class="nav-item">
-            <a href="/catalog/category/2" class="nav-link" routerLink="catalog/category/2" (click)="refresh('/catalog/category/2')">ceramics</a>
-          </li>
-          <li class="nav-item">
-            <a href="/catalog/category/3" class="nav-link" routerLink="catalog/category/3" (click)="refresh('/catalog/category/3')">decors</a>
+            <a href="/catalog/category/3" class="nav-link" routerLink="catalog/category/3">decors</a>
           </li>
         </ul>
       </div>
