@@ -21,6 +21,10 @@ export class ImageService {
     return this.http.get<any>(API_URL + "image/" + name,httpOptions)
   }
 
+  public deleteImage(name: string): Observable<any> {
+    return this.http.get<any>(API_URL + "image/delete/" + name,httpOptions)
+  }
+
   public upload(file: File): Observable<any>{
     const formData: FormData = new FormData();
     formData.append('file', file);

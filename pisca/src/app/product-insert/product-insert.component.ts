@@ -16,7 +16,7 @@ import {AccountService} from "../service/account.service";
 @Component({
   selector: 'app-product-insert',
   templateUrl: './product-insert.component.html',
-  styleUrls: ['./product-insert.component.css']
+  styleUrls: ['./product-insert.component.scss']
 })
 export class ProductInsertComponent implements OnInit {
 
@@ -70,6 +70,62 @@ export class ProductInsertComponent implements OnInit {
               private productService: ProductService,
               private accountService: AccountService) { }
 
+
+  files: any[] = [];
+
+  /**
+   * on file drop handler
+   */
+  onFileDropped($event: any) {
+    this.prepareFilesList($event);
+  }
+
+  /**
+   * handle file from browsing
+   */
+  fileBrowseHandler(files: any) {
+    this.prepareFilesList(files);
+  }
+
+  /**
+   * Convert Files list to normal array list
+   * @param files (Files List)
+   */
+  prepareFilesList(files: Array<any>) {
+    for (const item of files) {
+      item.progress = 0;
+      item.fname = ''; //name after upload
+      this.files.push(item);
+    }
+  }
+
+  /**
+   * Delete file from files list
+   * @param index (File index)
+   */
+  deleteFile(index: number) {
+    const file: string = this.files[index].fname
+
+    if(file.length>0){
+      this.imageService.deleteImage(this.files[index].fname).subscribe((event: any) => {
+            console.log(event);
+            this.message = ("Image deleted!")
+            this.files.splice(index, 1);
+        },
+        (err: any) => {
+          console.log(err);
+          if (err.error && err.error.message) {
+            this.message = err.error.message;
+          } else {
+            this.message = 'Could not delete the file!';
+          }
+        });
+    }
+    else
+      this.files.splice(index, 1);
+  }
+
+
   updateCategory(e : any){
     this.selectedCategory = e.target.value.toString()
   }
@@ -89,35 +145,36 @@ export class ProductInsertComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  upload() {
-    this.progress = 0;
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-      if (file) {
-        this.currentFile = file;
-        this.imageService.upload(this.currentFile).subscribe(
-          (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = "Upload file with success!";
-              this.image = event.body.message;
-            }
-          },
-          (err: any) => {
-            console.log(err);
-            this.progress = 0;
-            if (err.error && err.error.message) {
-              this.message = err.error.message;
-            } else {
-              this.message = 'Could not upload the file!';
-            }
-            this.currentFile = undefined;
-          });
-      }
-      this.selectedFiles = undefined;
+  uploadFile(file: any){
+    this.imageService.upload(file).subscribe(
+      (event: any) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          file.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          console.log("Upload file with success!");
+          this.message = "File uploaded"
+          file.fname = event.body.message
+          console.log(file.fname)
+        }
+      },
+      (err: any) => {
+        console.log(err);
+        file.progress = 0;
+        if (err.error && err.error.message) {
+          this.message = err.error.message;
+        } else {
+          this.message = 'Could not upload the file!';
+        }
+      });
+  }
+
+  uploadAll(){
+    console.log("files to upload", this.files)
+    if(this.files[0] != undefined){
+      this.uploadFile(this.files[0])
     }
   }
+
 
   createProduct(){
 

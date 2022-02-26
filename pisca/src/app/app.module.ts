@@ -24,6 +24,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductInsertComponent } from './product-insert/product-insert.component';
+import { DndDirective } from './dnd.directive';
+import { ProgressComponent } from './progress/progress.component';
 
 
 
@@ -41,6 +43,8 @@ import { ProductInsertComponent } from './product-insert/product-insert.componen
     ProductListComponent,
     ProductDetailsComponent,
     ProductInsertComponent,
+    DndDirective,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
