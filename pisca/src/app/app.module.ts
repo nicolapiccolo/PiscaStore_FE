@@ -26,6 +26,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ProductInsertComponent } from './product-insert/product-insert.component';
 import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -53,7 +56,8 @@ import { ProgressComponent } from './progress/progress.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgbModule
   ],
   providers: [
     authInterceptorProviders,

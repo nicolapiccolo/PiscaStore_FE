@@ -63,6 +63,8 @@ export class ProductInsertComponent implements OnInit {
 
   image : string = "";
 
+  uploadedImage: string[] = [];
+
   constructor(private categoryService: CategoryService,
               public loader: LoadingService,
               private imageService: ImageService,
@@ -154,6 +156,7 @@ export class ProductInsertComponent implements OnInit {
           console.log("Upload file with success!");
           this.message = "File uploaded"
           file.fname = event.body.message
+          this.uploadedImage.push(file.fname);
           console.log(file.fname)
         }
       },
@@ -170,36 +173,53 @@ export class ProductInsertComponent implements OnInit {
 
   uploadAll(){
     console.log("files to upload", this.files)
-    if(this.files[0] != undefined){
+    this.files.forEach( (file) => {
+      console.log(file)
+      this.uploadFile(file)
+    });
+
+    /*if(this.files[0] != undefined){
       this.uploadFile(this.files[0])
-    }
+    }*/
   }
 
 
   createProduct(){
 
     if(this.currentUser > 0 ){
-      const product: Product = new Product(0, this.form.name, this.form.description, this.form.dimensions, this.form.price, true ,this.image)
-
-      const pData: ProductData = new ProductData(product,this.currentUser, this.selectedCategory)
 
 
+      if(this.uploadedImage.length>0) {
 
-      this.productService.createProduct(pData).subscribe(
-        (event: any) =>{
-          if( event instanceof HttpResponse){
-            this.isSuccessful = true
-            console.log(event.body.message)
+        const product: Product = new Product(0, this.form.name, this.form.description,
+          this.form.dimensions,
+          this.form.price,
+          true,
+          this.uploadedImage[0] != null ? this.uploadedImage[0] : '',
+          this.uploadedImage[1] != null ? this.uploadedImage[1] : '',
+          this.uploadedImage[2] != null ? this.uploadedImage[2] : '',
+          this.uploadedImage[3] != null ? this.uploadedImage[3] : '',)
+
+        const pData: ProductData = new ProductData(product, this.currentUser, this.selectedCategory)
+
+
+        this.productService.createProduct(pData).subscribe(
+          (event: any) => {
+            if (event instanceof HttpResponse) {
+              this.isSuccessful = true
+              console.log(event.body.message)
+            }
+          },
+          (err: any) => {
+            if (err.error && err.error.message) {
+              console.log(err.error.message);
+            } else {
+              console.log('Error during creation');
+            }
           }
-        },
-        (err: any) =>{
-          if (err.error && err.error.message) {
-            console.log(err.error.message);
-          } else {
-            console.log('Error during creation');
-          }
-        }
-      )
+        )
+      }
+      else console.log("no image added")
     }
     else console.log("Invalid current user")
 
