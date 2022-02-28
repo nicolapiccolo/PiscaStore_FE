@@ -3,7 +3,7 @@
   <form
     *ngIf="!isSuccessful && !(loading$ | async)"
     name="form"
-    (ngSubmit)="f.form.valid && createProduct()"
+    (ngSubmit)="f.form.valid && confirmModal()"
     #f="ngForm"
     novalidate>
 
@@ -156,8 +156,7 @@
             </div>
 
 
-            <button type="submit" class="button"><span>Vendi ! </span></button>
-
+            <button type="submit" class="button" data-toggle="modal" data-target="#exampleModalCenter"><span>Vendi ! </span></button>
 
           </div>
         </div>
