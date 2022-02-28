@@ -18,6 +18,7 @@ import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
 export class ProductDetailsComponent implements OnInit {
 
   API = 'http://localhost:8080/catalog/api/v1/image/'
+  image_not_available = this.API + "not.png"
 
   errorMessage = "";
 
@@ -55,9 +56,16 @@ export class ProductDetailsComponent implements OnInit {
           this.getAuthor(data.id_author);
           this.getCategory(data.category);
 
-          if(this.product?.image)   this.images.push( {title: 'First Slide', short: 'First Slide Short', src: this.API + this.product?.image })
-          if(this.product?.image2)  this.images.push({title: 'Second Slide', short: 'First Slide Short', src: this.API + this.product?.image2 })
-          if(this.product?.image3)  this.images.push({title: 'First Slide', short: 'First Slide Short', src: this.API + this.product?.image3 })
+
+          if(this.product?.image){
+            this.images.push({title: '', short: '', src: this.API + this.product?.image })
+            if(this.product?.image2)  this.images.push({title: '', short: '', src: this.API + this.product?.image2 })
+            if(this.product?.image3)  this.images.push({title: '', short: '', src: this.API + this.product?.image3 })
+            if(this.product?.image4)  this.images.push({title: '', short: '', src: this.API + this.product?.image4 })
+          }
+          else this.images.push({title: '', short: '', src: this.image_not_available })
+
+
 
 
       })

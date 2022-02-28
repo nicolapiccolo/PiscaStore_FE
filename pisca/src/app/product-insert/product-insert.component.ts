@@ -188,7 +188,7 @@ export class ProductInsertComponent implements OnInit {
 
     if(this.currentUser > 0 ){
 
-
+      this.uploadAll()
       if(this.uploadedImage.length>0) {
 
         const product: Product = new Product(0, this.form.name, this.form.description,
