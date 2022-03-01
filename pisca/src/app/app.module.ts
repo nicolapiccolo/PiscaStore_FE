@@ -23,10 +23,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import {NgbdModalContent, NgbdModalError, ProductInsertComponent} from './product-insert/product-insert.component';
+import {
+  NgbdModalContent,
+  NgbdModalError,
+  NgbdModalProgress,
+  ProductInsertComponent
+} from './product-insert/product-insert.component';
 import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductAuthorComponent } from './product-author/product-author.component';
 
 
 
@@ -49,7 +55,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DndDirective,
     ProgressComponent,
     NgbdModalContent,
-    NgbdModalError
+    NgbdModalError,
+    NgbdModalProgress,
+    ProductAuthorComponent
   ],
   imports: [
     BrowserModule,

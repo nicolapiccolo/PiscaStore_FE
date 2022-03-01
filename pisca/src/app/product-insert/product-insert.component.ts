@@ -10,7 +10,7 @@ import {Product} from "../model/product";
 import {ProductData} from "../model/productData";
 import {ProductService} from "../service/product.service";
 import {AccountService} from "../service/account.service";
-import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
 
 
@@ -38,6 +38,34 @@ export class NgbdModalContent {
 
   constructor(public modal: NgbActiveModal) {
   }
+}
+
+
+@Component({
+  selector: 'ngbd-modal-progress',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title">Conferma prodotto</h4>
+    </div>
+    <div class="modal-body">
+
+      <div class="spinner" >
+        <div class="spinner-border" role="status"  >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+      <p><strong>{{message}}</strong></p>
+
+
+    </div>
+  `
+})
+export class NgbdModalProgress {
+
+  message: string = '';
+
+  constructor(public modal: NgbActiveModal) {}
 }
 
 @Component({
@@ -162,6 +190,20 @@ export class ProductInsertComponent implements OnInit {
     });
   }
 
+  progressModal(message: string){
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false
+    };
+    const modalRef = this.modalService.open(NgbdModalProgress,ngbModalOptions);
+    modalRef.componentInstance.message = message;
+    return modalRef
+  }
+
+  closeProgressModal(modalRef: any){
+    modalRef.close();
+  }
+
   /**
    * on file drop handler
    */
@@ -239,28 +281,7 @@ export class ProductInsertComponent implements OnInit {
   }
 
   async uploadFile(file: any) {
-    /*this.imageService.upload(file).subscribe(
-      (event: any) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          file.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          console.log("Upload file with success!");
-          this.message = "File uploaded"
-          file.fname = event.body.message
-          this.uploadedImage.push(file.fname);
-          console.log(file.fname)
-        }
-      },
-      (err: any) => {
-        console.log(err);
-        file.progress = 0;
-        if (err.error && err.error.message) {
-          this.message = err.error.message;
-        } else {
-          this.message = 'Could not upload the file!';
-        }
-      });
-    */
+
     const data = await this.imageService.upload(file).toPromise()
     console.log(data);
 
@@ -293,6 +314,7 @@ export class ProductInsertComponent implements OnInit {
 
     if (this.currentUser > 0) {
 
+      const modalRef = this.progressModal("Creating")
       await this.uploadAll()
 
       console.log("image", this.uploadedImage.length)
@@ -319,10 +341,15 @@ export class ProductInsertComponent implements OnInit {
             if (event instanceof HttpResponse) {
               this.isSuccessful = true
               console.log(event.body.message)
-              this.router.navigateByUrl('catalog/');
+              const id = event.body.message
+
+              if(modalRef) this.closeProgressModal(modalRef)
+
+              this.router.navigateByUrl('catalog/' + id);
             }
           },
           (err: any) => {
+            if(modalRef) this.closeProgressModal(modalRef)
             if (err.error && err.error.message) {
               console.log(err.error.message);
               this.errorModal(err.error.message);
@@ -336,6 +363,7 @@ export class ProductInsertComponent implements OnInit {
         )
       } else {
         console.log("no image added")
+        if(modalRef) this.closeProgressModal(modalRef)
         this.errorModal('No image added');
 
       }
@@ -346,5 +374,7 @@ export class ProductInsertComponent implements OnInit {
     }
 
   }
+
+
 
 }
