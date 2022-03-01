@@ -3,6 +3,7 @@
 body {
   font-family: "Poppins", sans-serif;
   color: #444444;
+  overflow: auto;
 }
 
 a,
@@ -45,7 +46,7 @@ a:hover {
 }
 
 .spinner {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -64,5 +65,4 @@ a:hover {
   width: 5rem;
   height: 5rem;
 }
-
 

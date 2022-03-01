@@ -32,12 +32,15 @@ export class ProductService {
     return this.http.get<any>(API_URL + "catalog/category/"+id,httpOptions);
   }
 
-
-
   public findAll(): Observable<any> {
     return this.http.get<any>(API_URL + "catalog",httpOptions);
   }
 
+
+  public findByAuthorId(id: number): Observable<any> {
+    return this.http.get<any>(API_URL + "products",
+      {  headers: new HttpHeaders({ 'Content-Type': 'application/json' }) ,params:{id}})
+  }
 
   public findById(id: number): Observable<any> {
     return this.http.get<any>(API_URL + "products/" + id,httpOptions)
@@ -52,8 +55,6 @@ export class ProductService {
     });
     console.log(req)
     return this.http.request(req)
-
-
   }
 
 }

@@ -1,7 +1,8 @@
 <div class="container">
   <div class="panel">
-    <div class="spinner" *ngIf="loading$ | async" >
-      <div class="spinner-border" role="status"  >
+
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
       <div class="spinner-grow" role="status">
@@ -10,17 +11,27 @@
     </div>
 
     <div class="row" *ngIf="!(loading$ | async)">
-      <div class="col-sm">
+      <div class="col-5">
         <div class="product_image">
-          <img *ngIf="!product?.image" src='http://localhost:8080/catalog/api/v1/image/not.png' alt="" width = "550" height = "550">
-          <img *ngIf="product?.image" src='http://localhost:8080/catalog/api/v1/image/{{product?.image}}' onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" alt="" width = "550" height = "550">
+
+          <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let image of images">
+              <div class="wrapper">
+                <img [src]=image.src onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" >
+              </div>
+              <div class="carousel-caption">
+                <h3>{{ image.title }}</h3>
+                <p>{{ image.short }}</p>
+              </div>
+            </ng-template>
+          </ngb-carousel>
 
         </div>
       </div>
-      <div class="col-sm">
+      <div class="col">
         <div class="product_detail">
           <div class="top">
-            <a (click)="onBack()" class="previous">&#8592;  BACK</a>
+            <a (click)="onBack()" class="previous">&#8592; BACK</a>
             <h4 class="product_title">{{product?.name}}</h4>
             <h4 class="product_author">{{author?.name}} {{author?.surname}}</h4>
           </div>
@@ -33,7 +44,7 @@
           <hr>
 
           <div class="bottom">
-            <h4 class="product_price">€ {{product?.price}}</h4>
+            <h4 class="product_price">{{ product?.price | currency: 'EUR' }}</h4>
             <button class="button"><span>ADD TO CART </span></button>
           </div>
         </div>

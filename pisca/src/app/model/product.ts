@@ -9,6 +9,10 @@ export class Product{
   price: string = "";
   available: boolean = true;
   image: string = "";
+  image2: string = "";
+  image3: string = "";
+  image4: string = "";
+
 
 
 
@@ -22,7 +26,7 @@ export class Product{
   "available": true
   */
 
-  constructor(id:number,name: string, description: string, dimensions: string, price: string, available: boolean, image: string) {
+  constructor(id:number,name: string, description: string, dimensions: string, price: string, available: boolean, image: string, image2: string = '', image3: string = '' , image4: string = '') {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -30,6 +34,10 @@ export class Product{
     this.price = price;
     this.available = available;
     this.image = image;
+    this.image2 = image2;
+    this.image3 = image3;
+    this.image4 = image4;
+
   }
 
   toString(): string{

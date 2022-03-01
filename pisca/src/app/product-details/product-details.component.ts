@@ -8,6 +8,7 @@ import {ProductData} from "../model/productData";
 import {Author} from "../model/author";
 import {LoadingService} from "../service/loading.service";
 import {Category} from "../model/category";
+import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-product-details',
@@ -15,6 +16,9 @@ import {Category} from "../model/category";
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
+
+  API = 'http://localhost:8080/catalog/api/v1/image/'
+  image_not_available = this.API + "not.png"
 
   errorMessage = "";
 
@@ -24,12 +28,19 @@ export class ProductDetailsComponent implements OnInit {
 
   loading$ = this.loader.loading$;
 
+  images: Array<{title: string,  short: string, src: string}> = [];
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductService,
               private authorService: AuthorService,
               private categoryService: CategoryService,
-              public loader: LoadingService) {
+              public loader: LoadingService,config: NgbCarouselConfig) {
+
+    config.interval = 4000;
+    config.keyboard = true;
+    config.pauseOnHover = true;
+
   }
 
   ngOnInit(): void {
@@ -39,8 +50,24 @@ export class ProductDetailsComponent implements OnInit {
           //console.log(data)
 
           this.product = data.product;
+          console.log("prod",this.product)
+          console.log("data",data.product)
+
           this.getAuthor(data.id_author);
           this.getCategory(data.category);
+
+
+          if(this.product?.image){
+            this.images.push({title: '', short: '', src: this.API + this.product?.image })
+            if(this.product?.image2)  this.images.push({title: '', short: '', src: this.API + this.product?.image2 })
+            if(this.product?.image3)  this.images.push({title: '', short: '', src: this.API + this.product?.image3 })
+            if(this.product?.image4)  this.images.push({title: '', short: '', src: this.API + this.product?.image4 })
+          }
+          else this.images.push({title: '', short: '', src: this.image_not_available })
+
+
+
+
       })
     }
   }
