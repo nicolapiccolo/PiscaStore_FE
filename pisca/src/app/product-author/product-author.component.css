@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body{
+  background:#eee;
+  font-family: "Inter";
+  color: #444444;
+}
+
+.panel{
+  margin:20px;
+  align-content: center;
+  align-items: center;
+}
+
+.panel .no-product{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+.panel .title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.8em;
+  padding-bottom: 8px;
+}
+
+.product-list{
+  margin: 20px;
+}
+
+.card{
+  margin:20px;
+  max-height: 350px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border{
+  width: 5rem;
+  height: 5rem;
+}
+
+.spinner-grow{
+  width: 5rem;
+  height: 5rem;
+}
+
+.product_image{
+  margin: 15px;
+}
+
+.product_info{
+  margin: 15px;
+}
+
+.wrapper img {
+  max-height: 250px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.panel .product_info .product_title{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  margin-top:20px;
+}
+.panel .product_info .product_dimension{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #65635F;
+  margin-top: 5px;
+}
+
+.panel .product_info .product_description{
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: #65635F;
+  margin-top: 5px;
+
+}
+
+.panel .product_info hr{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.panel .product_info .product_price{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 32px;
+  margin-top: 30px;
+}

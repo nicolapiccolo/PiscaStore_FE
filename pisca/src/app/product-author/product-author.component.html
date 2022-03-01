@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="panel">
+
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="product-list" *ngIf="!(loading$ | async)">
+
+      <h3 class="title">I miei articoli</h3>
+
+      <div class="empty-list" *ngIf="isEmpty">
+        <h4 class="no-product">"Non hai ancora messo in vendita nessun prodotto, inizia a vendere!"</h4>
+      </div>
+
+      <ng-container *ngFor="let product of products">
+        <div class="row">
+          <div class="card">
+            <div class="row no-gutters">
+
+              <div class="col-4">
+                <div class="product_image">
+
+                  <ngb-carousel>
+                    <ng-template ngbSlide>
+                      <div class="wrapper">
+                        <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}"
+                             onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'">
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <div class="wrapper">
+                        <img src="http://localhost:8080/catalog/api/v1/image/{{product.image2}}"
+                             onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'">
+                      </div>
+                    </ng-template>
+                    <ng-template>
+                      <div class="wrapper">
+                        <img src="http://localhost:8080/catalog/api/v1/image/{{product.image3}}"
+                             onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'">
+                      </div>
+                    </ng-template>
+                    <ng-template>
+                      <div class="wrapper">
+                        <img src="http://localhost:8080/catalog/api/v1/image/{{product.image4}}"
+                             onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'"   height="250">
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="product_info">
+                  <h5 class="card-title product_title">{{product.name}}</h5>
+                  <p class="card-text product_description">{{product.description}}</p>
+                  <p class="card-text product_dimension">{{product.dimensions}}</p>
+                  <p class="card-text product_price">{{ product.price | currency: 'EUR' }}</p>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col">
+                    <p class="text-muted">Added 2 days ago</p>
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-danger btn-sm float-right" id="right" style="color:white">Rimuovi articolo</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

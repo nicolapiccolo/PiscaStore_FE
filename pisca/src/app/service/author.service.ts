@@ -18,4 +18,6 @@ export class AuthorService {
   public findById(id: number): Observable<any> {
     return this.http.get<any>(API_URL + "authors/" + id,httpOptions)
   }
+
+
 }
