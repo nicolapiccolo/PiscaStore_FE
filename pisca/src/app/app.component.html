@@ -47,6 +47,14 @@
         </ul>
       </div>
 
+      <div class="right-nav bag">
+        <ul class="navbar-nav mx-auto" *ngIf="isLoggedIn">
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/bag']">bag(0)</a>
+          </li>
+        </ul>
+      </div>
+
 
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
 
