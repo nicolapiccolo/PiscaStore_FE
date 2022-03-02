@@ -46,8 +46,11 @@ export class ProductService {
     return this.http.get<any>(API_URL + "products/" + id,httpOptions)
   }
 
-  public createProduct(product: ProductData) : Observable<any> {
+  public deleteProduct(id: number): Observable<any> {
+    return this.http.get<any>(API_URL + "products/delete/" + id,httpOptions)
+  }
 
+  public createProduct(product: ProductData) : Observable<any> {
 
     const req = new HttpRequest('POST', `${API_URL}products/create`, product, {
       reportProgress: true,

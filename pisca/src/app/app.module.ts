@@ -33,6 +33,10 @@ import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductAuthorComponent } from './product-author/product-author.component';
+import {ModalProgress} from "./modal/modalProgress";
+import {ModalConfirm} from "./modal/modalConfirm";
+import {ModalError} from "./modal/modalError";
+import {ModalSuccess} from "./modal/modalSuccess";
 
 
 
@@ -57,7 +61,11 @@ import { ProductAuthorComponent } from './product-author/product-author.componen
     NgbdModalContent,
     NgbdModalError,
     NgbdModalProgress,
-    ProductAuthorComponent
+    ProductAuthorComponent,
+    ModalProgress,
+    ModalConfirm,
+    ModalError,
+    ModalSuccess
   ],
   imports: [
     BrowserModule,

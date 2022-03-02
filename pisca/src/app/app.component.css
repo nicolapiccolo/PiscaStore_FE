@@ -42,3 +42,16 @@
   font-weight: 700;
   color: #6D5D58;
 }
+
+
+a:active{
+  text-decoration: underline;
+}
+
+li.active {   text-decoration: underline;
+}
+
+
+li:hover {
+  text-decoration: underline;
+}

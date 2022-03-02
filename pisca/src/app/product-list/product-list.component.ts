@@ -20,17 +20,20 @@ export class ProductListComponent implements OnInit {
               public loader: LoadingService,
               private route: ActivatedRoute,
               private router: Router,) {
+    console.log("created")
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'))
+    if(this.route.snapshot.url.length>2){
+      const id = Number(this.route.snapshot.url[2].toString())
 
-    console.log("ID:",id)
-    if(id>0){
-      this.productListService.findByCategory(id).subscribe(data => {
-        console.log(data)
-        this.products = data;
-      });
+      console.log("ID:",id)
+      if(id>0){
+        this.productListService.findByCategory(id).subscribe(data => {
+          console.log(data)
+          this.products = data;
+        });
+      }
     }
     else{
       this.productListService.findAll().subscribe(data => {
@@ -42,6 +45,10 @@ export class ProductListComponent implements OnInit {
 
   openDetails(id: number){
     console.log(id);
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
 }

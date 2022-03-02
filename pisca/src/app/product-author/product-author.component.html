@@ -15,7 +15,7 @@
       <h3 class="title">I miei articoli</h3>
 
       <div class="empty-list" *ngIf="isEmpty">
-        <h4 class="no-product">"Non hai ancora messo in vendita nessun prodotto, inizia a vendere!"</h4>
+        <h4 class="no-product">Non hai ancora messo in vendita nessun prodotto, inizia a vendere!</h4>
       </div>
 
       <ng-container *ngFor="let product of products">
@@ -70,7 +70,7 @@
                     <p class="text-muted">Added 2 days ago</p>
                   </div>
                   <div class="col-auto">
-                    <button class="btn btn-danger btn-sm float-right" id="right" style="color:white">Rimuovi articolo</button>
+                    <button class="btn btn-danger btn-sm float-right" id="right" style="color:white" (click)="deleteProduct(product.id)">Rimuovi articolo</button>
                   </div>
                 </div>
               </div>

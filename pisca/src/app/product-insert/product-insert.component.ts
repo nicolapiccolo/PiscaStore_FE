@@ -77,7 +77,7 @@ export class NgbdModalProgress {
               (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <span class="text-danger">Errore durante la crezione del prodotto <span
+      <span class="text-danger">Errore durante la creazione del prodotto <span
         class="text-primary">{{name}}</span></span>
       <p><strong>{{error}}</strong></p>
 
