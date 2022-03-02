@@ -45,7 +45,7 @@
 
           <div class="bottom">
             <h4 class="product_price">{{ product?.price | currency: 'EUR' }}</h4>
-            <button class="button"><span>ADD TO CART </span></button>
+            <button class="button" (click)="addToCart()"><span>ADD TO CART </span></button>
           </div>
         </div>
       </div>

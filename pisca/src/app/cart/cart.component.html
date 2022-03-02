@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="panel">
+
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="product-list" *ngIf="!(loading$ | async)">
+
+      <h3 class="title">Il mio carrello</h3>
+
+      <div class="empty-list" *ngIf="isEmpty">
+        <h4 class="no-product">Non hai ancora messo in vendita nessun prodotto, inizia a vendere!</h4>
+      </div>
+
+      <ng-container *ngFor="let product of products">
+        <div class="row">
+          <div class="card">
+            <div class="row no-gutters">
+
+              <div class="col-4">
+                <div class="product_image">
+
+                  <div class="wrapper">
+                    <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}"
+                         onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="product_info">
+                  <h5 class="card-title product_title">{{product.name}}</h5>
+                  <p class="card-text product_description">{{product.description}}</p>
+                  <p class="card-text product_dimension">{{product.dimensions}}</p>
+                  <p class="card-text product_price">{{ product.price | currency: 'EUR' }}</p>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+      </ng-container>
+
+      <button class="button" data-toggle="modal" data-target="#exampleModalCenter" (click)="createOrder()"><span>Procedi all'acquisto!</span></button>
+
+    </div>
+
+  </div>
+</div>
