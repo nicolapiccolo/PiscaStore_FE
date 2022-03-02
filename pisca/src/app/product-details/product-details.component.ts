@@ -8,7 +8,10 @@ import {ProductData} from "../model/productData";
 import {Author} from "../model/author";
 import {LoadingService} from "../service/loading.service";
 import {Category} from "../model/category";
-import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCarouselConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CartService} from "../service/cart.service";
+import {ModalSuccess} from "../modal/modalSuccess";
+import {ModalError} from "../modal/modalError";
 
 @Component({
   selector: 'app-product-details',
@@ -35,6 +38,8 @@ export class ProductDetailsComponent implements OnInit {
               private productService: ProductService,
               private authorService: AuthorService,
               private categoryService: CategoryService,
+              private cartService: CartService,
+              private modalService: NgbModal,
               public loader: LoadingService,config: NgbCarouselConfig) {
 
     config.interval = 4000;
@@ -87,6 +92,29 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
+  addToCart(){
+    if(this.product!=null)  {
+      if(this.cartService.addToCart(this.product))     this.openSuccess("Aggiunto","Articolo aggiunto al carrello")
+
+      else this.openError("Aggiunto","","L' articolo è già presente nel carrello","")
+
+    }
+  }
+
+
+  openSuccess(title: string ,message: string){
+    const modalRef = this.modalService.open(ModalSuccess);
+    modalRef.componentInstance.title = title
+    modalRef.componentInstance.message = message;
+  }
+
+  openError(title: string, name: string, error: string, error_code: string){
+    const modalRef = this.modalService.open(ModalError);
+    modalRef.componentInstance.title = title
+    modalRef.componentInstance.name = name;
+    modalRef.componentInstance.error = error;
+    modalRef.componentInstance.error_code = error_code;
+  }
 
   onBack(): void {
     this.router.navigate(['/catalog']);

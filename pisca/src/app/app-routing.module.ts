@@ -13,6 +13,7 @@ import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
 import {ProductInsertComponent} from "./product-insert/product-insert.component";
 import {ProductAuthorComponent} from "./product-author/product-author.component";
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'catalog/:id', component:ProductDetailsComponent},
   { path: 'product_insert', component: ProductInsertComponent},
   { path: 'product_author', component: ProductAuthorComponent},
+  { path: 'cart', component: CartComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

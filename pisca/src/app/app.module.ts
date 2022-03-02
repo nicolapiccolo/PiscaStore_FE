@@ -37,6 +37,7 @@ import {ModalProgress} from "./modal/modalProgress";
 import {ModalConfirm} from "./modal/modalConfirm";
 import {ModalError} from "./modal/modalError";
 import {ModalSuccess} from "./modal/modalSuccess";
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -65,7 +66,8 @@ import {ModalSuccess} from "./modal/modalSuccess";
     ModalProgress,
     ModalConfirm,
     ModalError,
-    ModalSuccess
+    ModalSuccess,
+    CartComponent
   ],
   imports: [
     BrowserModule,
