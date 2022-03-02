@@ -56,9 +56,22 @@
       </div>
 
 
+      <div class="right-nav bag">
+        <ul class="navbar-nav mx-auto" *ngIf="isLoggedIn">
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/bag']">bag(0)</a>
+          </li>
+        </ul>
+      </div>
+
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
 
+
+
         <div class="btn-group dropstart">
+
+
+
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
              data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Inter">
             {{username}}
@@ -74,7 +87,10 @@
             </li>
             <li><a class="dropdown-item" (click)="logout()">LogOut</a></li>
           </ul>
+
+
         </div>
+
 
       </ul>
     </div>
