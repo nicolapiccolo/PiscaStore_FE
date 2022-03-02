@@ -44,13 +44,8 @@
 }
 
 
-a:active{
-  text-decoration: underline;
-}
-
 li.active {   text-decoration: underline;
 }
-
 
 li:hover {
   text-decoration: underline;

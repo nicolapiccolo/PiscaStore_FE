@@ -15,6 +15,8 @@ export class ProductListComponent implements OnInit {
 
   loading$ = this.loader.loading$;
 
+  isEmpty = false;
+
 
   constructor(private productListService: ProductService,
               public loader: LoadingService,
@@ -30,15 +32,19 @@ export class ProductListComponent implements OnInit {
       console.log("ID:",id)
       if(id>0){
         this.productListService.findByCategory(id).subscribe(data => {
-          console.log(data)
-          this.products = data;
+          if(data.length>0){
+            this.products = data
+          }
+          else this.isEmpty=true
         });
       }
     }
     else{
       this.productListService.findAll().subscribe(data => {
-        console.log(data)
-        this.products = data;
+        if(data.length>0){
+          this.products = data
+        }
+        else this.isEmpty=true
       });
     }
   }
