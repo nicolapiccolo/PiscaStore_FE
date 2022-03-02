@@ -3,42 +3,39 @@
     <div class="container-fluid">
 
       <a class="navbar-brand" href="#">PiscaStore</a>
-        <button class="navbar-toggler" type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="navbar-collapse collapse flex-grow-1 justify-content-center">
 
- <ul class="navbar-nav mx-auto" routerLinkActive="active">
-          <li class="nav-item">
-            <a href="/catalog" class="nav-link" routerLink="catalog" (click)="refresh('/catalog')">home</a>
-          </li>
-          <!--<li class="nav-item" *ngIf="showAdminBoard">
-            <a href="/admin" class="nav-link" routerLink="admin" (click)="refresh('/admin')">admin</a>
-          </li>
-          <li class="nav-item" *ngIf="showModeratorBoard">
-            <a href="/mod" class="nav-link" routerLink="mod" (click)="refresh('/mod')" >mode</a>
-          </li>
-          <li class="nav-item">
-            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user" (click)="refresh('/user')">user</a>
-                      (click)="refresh('/catalog/category/1')
+        <ul class="navbar-nav mx-auto" >
 
-          </li>-->
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/catalog']" >all</a>
+          </li>
 
-          <li class="nav-item">
-            <a class="nav-link" routerLink="catalog/category/2"  (click)="refresh('/catalog/category/2')">painting</a>
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/catalog/category',1]" >ceramics</a>
           </li>
-          <li class="nav-item">
-            <a href="/catalog/category/1" class="nav-link" routerLink="catalog/category/1" (click)="refresh('/catalog/category/1')">ceramics</a>
+
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/catalog/category',2]" >painting</a>
           </li>
-          <li class="nav-item">
-            <a href="/catalog/category/3" class="nav-link" routerLink="catalog/category/3">decors</a>
+
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/catalog/category',4]" >handmade</a>
           </li>
+
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" [routerLink]="['/catalog/category',3]">other</a>
+          </li>
+
         </ul>
       </div>
 
@@ -54,14 +51,15 @@
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
 
         <div class="btn-group dropstart">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Inter">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false" style="font-family: Inter">
             {{username}}
           </a>
           <ul class="dropdown-menu">
             <!-- Dropdown menu links -->
             <li><a class="dropdown-item" href="/profile" routerLink="profile">Il mio profilo</a></li>
             <li><a class="dropdown-item" href="#">I miei ordini</a></li>
-            <li><a class="dropdown-item" href="#">I miei articoli</a></li>
+            <li><a class="dropdown-item" href="/product_author" routerLink="product_author">I miei articoli</a></li>
             <li><a class="dropdown-item" href="/product_insert" routerLink="product_insert">Vendi un articolo</a></li>
             <li>
               <hr class="dropdown-divider">

@@ -77,7 +77,7 @@ export class NgbdModalProgress {
               (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <span class="text-danger">Errore durante la crezione del prodotto <span
+      <span class="text-danger">Errore durante la creazione del prodotto <span
         class="text-primary">{{name}}</span></span>
       <p><strong>{{error}}</strong></p>
 
@@ -261,14 +261,21 @@ export class ProductInsertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.getCurrentUser().subscribe(data => {
-      console.log("user: ", data)
-      this.currentUser = data
-
-      if (data <= 0 || data == undefined || data == null) {
-
-      }
-    })
+    this.accountService.getCurrentUser().subscribe((data: any) => {
+        console.log("user: ", data)
+        if (data <= 0 || data == undefined || data == null) {
+          this.currentUser = 0
+          console.log("cannot retrive user")
+        }
+        else{
+          this.currentUser = data
+        }},
+      (err:any)=>{
+        console.log(err)
+        this.currentUser = 0
+        console.log("cannot retrive user")
+        this.router.navigateByUrl("/login")
+      });
 
     this.categoryService.findAll().subscribe(data => {
       this.categories = data

@@ -66,3 +66,16 @@ a:hover {
   height: 5rem;
 }
 
+.no-product{
+  position: absolute;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 25px;
+  display: flex;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  align-items: center;
+}

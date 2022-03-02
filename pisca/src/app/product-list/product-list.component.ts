@@ -15,33 +15,46 @@ export class ProductListComponent implements OnInit {
 
   loading$ = this.loader.loading$;
 
+  isEmpty = false;
+
 
   constructor(private productListService: ProductService,
               public loader: LoadingService,
               private route: ActivatedRoute,
               private router: Router,) {
+    console.log("created")
   }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'))
+    if(this.route.snapshot.url.length>2){
+      const id = Number(this.route.snapshot.url[2].toString())
 
-    console.log("ID:",id)
-    if(id>0){
-      this.productListService.findByCategory(id).subscribe(data => {
-        console.log(data)
-        this.products = data;
-      });
+      console.log("ID:",id)
+      if(id>0){
+        this.productListService.findByCategory(id).subscribe(data => {
+          if(data.length>0){
+            this.products = data
+          }
+          else this.isEmpty=true
+        });
+      }
     }
     else{
       this.productListService.findAll().subscribe(data => {
-        console.log(data)
-        this.products = data;
+        if(data.length>0){
+          this.products = data
+        }
+        else this.isEmpty=true
       });
     }
   }
 
   openDetails(id: number){
     console.log(id);
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
 }

@@ -12,6 +12,7 @@ import {CanDeactivateGuard} from "./can-deactivate/can-deactivate.guard";
 import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
 import {ProductInsertComponent} from "./product-insert/product-insert.component";
+import {ProductAuthorComponent} from "./product-author/product-author.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,9 +24,13 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: 'profile_edit', component: ProfileEditComponent},
   { path: 'catalog', component: ProductListComponent},
-  { path: 'catalog/category/:id', component: ProductListComponent},
+  { path: 'catalog/category/1', component: ProductListComponent},
+  { path: 'catalog/category/2', component: ProductListComponent},
+  { path: 'catalog/category/3', component: ProductListComponent},
+  { path: 'catalog/category/4', component: ProductListComponent},
   { path: 'catalog/:id', component:ProductDetailsComponent},
   { path: 'product_insert', component: ProductInsertComponent},
+  { path: 'product_author', component: ProductAuthorComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
