@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {Product} from "../model/product";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const CART_KEY = 'auth-cart';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,17 @@ export class TokenStorageService {
 
   public getToken(): string | null {
     return window.localStorage.getItem(TOKEN_KEY);
+  }
+
+  public saveProduct(product: Array<Product>){
+    window.localStorage.removeItem(CART_KEY)
+    window.localStorage.setItem(CART_KEY, JSON.stringify(product))
+    console.log(this.getProduct())
+  }
+
+  public getProduct(): any{
+    const prod = window.localStorage.getItem(CART_KEY)
+    return JSON.parse(prod!!)
   }
 
   public isValid(): boolean{

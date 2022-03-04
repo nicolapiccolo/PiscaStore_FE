@@ -5,6 +5,7 @@ import {ProductService} from "../service/product.service";
 import {LoadingService} from "../service/loading.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {formatNumber} from "@angular/common";
+import {TokenStorageService} from "../service/token-storage.service";
 
 @Component({
   selector: 'app-cart',
@@ -18,11 +19,12 @@ export class CartComponent implements OnInit {
   size = this.products?.length;
   loading$ = this.loader.loading$;
   strTotal = ""
-  totalPrice = ""
+  totalPrice: number = 0
 
 
   constructor(public loader: LoadingService,
               private route: ActivatedRoute,
+              private tokenStorage: TokenStorageService,
               private router: Router,
               private cartService: CartService) {
 
@@ -30,14 +32,13 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.products = this.cartService.getProducts()
-    if (this.products.length>0){
+    this.products = this.tokenStorage.getProduct()
+    if (this.products!!.length>0){
       this.isEmpty = false;
       this.size = this.products?.length;
       this.getTotalItems();
       this.getTotalPrice();
     }
-    console.log(this.isEmpty)
   }
 
   getTotalItems(): string{
@@ -47,16 +48,15 @@ export class CartComponent implements OnInit {
   }
 
   getTotalPrice(){
+    this.totalPrice = 0
     for(let product of this.products!!){
-        this.totalPrice += product.price
-
+        this.totalPrice += Number(product.price)
     }
   }
 
   removeItem(product: Product){
-    const index: number = this.products!!.indexOf(product)
-    this.products?.splice(index, 1)
-    console.log(this.products?.length)
+    this.cartService.setProducts(product)
+    this.ngOnInit()
     window.location.reload()
   }
 

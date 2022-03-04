@@ -261,6 +261,7 @@ aside {
   border-radius: 10px;
   padding: 1rem;
   margin-top: 25px;
+  margin-left: 50px;
   position: fixed;
   width: 250px;
   -webkit-box-sizing: border-box;
