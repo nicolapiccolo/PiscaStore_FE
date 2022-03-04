@@ -61,7 +61,11 @@ export class CartComponent implements OnInit {
   }
 
   createOrder(){
+    let items_id = new Array<number> ();
 
+    for(let product of this.products!!){
+      items_id.push(product.id)
+    }
   }
 
 }

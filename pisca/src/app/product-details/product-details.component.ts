@@ -101,7 +101,6 @@ export class ProductDetailsComponent implements OnInit {
       }
 
       else this.openError("Aggiunto","","L' articolo è già presente nel carrello","")
-
     }
   }
 
