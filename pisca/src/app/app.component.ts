@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage.service";
+import {CartService} from "./service/cart.service";
+import {ProductDetailsComponent} from "./product-details/product-details.component";
 
 
 @Component({
@@ -8,14 +10,16 @@ import {TokenStorageService} from "./service/token-storage.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   private roles: string[] = [];
   title = 'pisca'
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  bagItems = 0;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService, private cartService: CartService) { }
 
   ngOnInit(): void {
 
@@ -27,6 +31,8 @@ export class AppComponent implements OnInit {
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
 
       this.username = user.username;
+
+      this.bagItems = this.cartService.getSize();
     }
   }
 
@@ -40,6 +46,15 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
 
     window.location.reload();
+  }
+
+  updateSize(bagItems: number): void{
+    this.bagItems = bagItems
+  }
+
+  receiveEvent($event: number){
+    console.log("bag ",$event)
+    this.updateSize($event)
   }
 
   color(){

@@ -31,4 +31,7 @@ export class CartService {
     return false;
   }
 
+  getSize(){
+    return this.products.length;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Product} from "../model/product";
 import {ProductService} from "../service/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -20,6 +20,7 @@ import {ModalError} from "../modal/modalError";
 })
 export class ProductDetailsComponent implements OnInit {
 
+  @Output() bagEvent = new EventEmitter<number>()
   API = 'http://localhost:8080/catalog/api/v1/image/'
   image_not_available = this.API + "not.png"
 
@@ -94,7 +95,10 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(){
     if(this.product!=null)  {
-      if(this.cartService.addToCart(this.product))     this.openSuccess("Aggiunto","Articolo aggiunto al carrello")
+      if(this.cartService.addToCart(this.product)){
+        this.openSuccess("Aggiunto","Articolo aggiunto al carrello")
+        this.bagEvent.emit(this.cartService.getSize())
+      }
 
       else this.openError("Aggiunto","","L' articolo è già presente nel carrello","")
 
