@@ -52,7 +52,7 @@
       <div class="right-nav bag">
         <ul class="navbar-nav mx-auto" *ngIf="isLoggedIn">
           <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a class="nav-link" [routerLink]="['/cart']">bag(0)</a>
+            <a class="nav-link" [routerLink]="['/cart']">bag({{bagItems}})</a>
           </li>
         </ul>
       </div>
