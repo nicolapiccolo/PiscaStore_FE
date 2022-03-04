@@ -38,6 +38,7 @@ import {ModalConfirm} from "./modal/modalConfirm";
 import {ModalError} from "./modal/modalError";
 import {ModalSuccess} from "./modal/modalSuccess";
 import { CartComponent } from './cart/cart.component';
+import { CheckoutOrderComponent } from './checkout-order/checkout-order.component';
 
 
 
@@ -67,7 +68,8 @@ import { CartComponent } from './cart/cart.component';
     ModalConfirm,
     ModalError,
     ModalSuccess,
-    CartComponent
+    CartComponent,
+    CheckoutOrderComponent
   ],
   imports: [
     BrowserModule,
