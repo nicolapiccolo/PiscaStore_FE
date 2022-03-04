@@ -23,7 +23,7 @@
     <div class="basket-product">
       <div class="item">
         <div class="product-image">
-          <!--<img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}" onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'"  class="product-frame">-->
+          <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}" onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'"  class="product-frame">
         </div>
         <div class="product-details">
           <h5><strong>{{product.name}}</strong></h5>
@@ -46,7 +46,7 @@
         <div class="total-value final-value" id="basket-total"><strong>{{totalPrice}}</strong></div>
       </div>
       <div class="summary-checkout">
-        <button class="checkout-cta">Checkout</button>
+        <button class="checkout-cta" (click)="createOrder()">Checkout</button>
       </div>
     </div>
   </aside>
