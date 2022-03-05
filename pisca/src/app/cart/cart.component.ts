@@ -5,6 +5,9 @@ import {ProductService} from "../service/product.service";
 import {LoadingService} from "../service/loading.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {formatNumber} from "@angular/common";
+
+import {TokenStorageService} from "../service/token-storage.service";
+
 import {AccountService} from "../service/account.service";
 import {OrderUser} from "../model/orderUser";
 import {Item} from "../model/item";
@@ -13,6 +16,7 @@ import {OrderService} from "../service/order.service";
 import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {NgbdModalProgress} from "../product-insert/product-insert.component";
 import {ModalConfirm} from "../modal/modalConfirm";
+
 
 @Component({
   selector: 'app-cart',
@@ -27,11 +31,12 @@ export class CartComponent implements OnInit {
   size = this.products?.length;
   loading$ = this.loader.loading$;
   strTotal = ""
-  totalPrice = ""
+  totalPrice: number = 0
 
 
   constructor(public loader: LoadingService,
               private route: ActivatedRoute,
+              private tokenStorage: TokenStorageService,
               private router: Router,
               private cartService: CartService,
               private accountService: AccountService,
@@ -42,6 +47,15 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.products = this.tokenStorage.getProduct()
+    if (this.products!!.length>0){
+      this.isEmpty = false;
+      this.size = this.products?.length;
+      this.getTotalItems();
+      this.getTotalPrice();
+    }
+
 
     this.accountService.getCurrentUser().subscribe((data: any) => {
         console.log("user: ", data)
@@ -76,6 +90,7 @@ export class CartComponent implements OnInit {
     const modalRef = this.modalService.open(NgbdModalProgress, ngbModalOptions);
     modalRef.componentInstance.message = message;
     return modalRef
+
   }
 
   closeProgressModal(modalRef: any) {
@@ -89,6 +104,18 @@ export class CartComponent implements OnInit {
     return this.strTotal
   }
 
+
+  getTotalPrice(){
+    this.totalPrice = 0
+    for(let product of this.products!!){
+        this.totalPrice += Number(product.price)
+    }
+  }
+
+  removeItem(product: Product){
+    this.cartService.setProducts(product)
+    this.ngOnInit()
+
   getTotalPrice() {
     for (let product of this.products!!) {
       this.totalPrice += product.price
@@ -100,6 +127,7 @@ export class CartComponent implements OnInit {
     const index: number = this.products!!.indexOf(product)
     this.products?.splice(index, 1)
     console.log(this.products?.length)
+
     window.location.reload()
   }
 
