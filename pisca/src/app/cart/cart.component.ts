@@ -47,16 +47,6 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    this.products = this.tokenStorage.getProduct()
-    if (this.products!!.length>0){
-      this.isEmpty = false;
-      this.size = this.products?.length;
-      this.getTotalItems();
-      this.getTotalPrice();
-    }
-
-
     this.accountService.getCurrentUser().subscribe((data: any) => {
         console.log("user: ", data)
         if (data <= 0 || data == undefined || data == null) {
@@ -64,8 +54,8 @@ export class CartComponent implements OnInit {
           console.log("cannot retrive user")
         } else {
           this.currentUser = data
-          this.products = this.cartService.getProducts()
-          if (this.products.length > 0) {
+          this.products = this.tokenStorage.getProduct()
+          if (this.products!!.length > 0) {
             this.isEmpty = false;
             this.size = this.products?.length;
             this.getTotalItems();
@@ -105,29 +95,16 @@ export class CartComponent implements OnInit {
   }
 
 
-  getTotalPrice(){
-    this.totalPrice = 0
-    for(let product of this.products!!){
-        this.totalPrice += Number(product.price)
-    }
-  }
-
-  removeItem(product: Product){
-    this.cartService.setProducts(product)
-    this.ngOnInit()
-
   getTotalPrice() {
+    this.totalPrice = 0
     for (let product of this.products!!) {
-      this.totalPrice += product.price
-
+      this.totalPrice += Number(product.price)
     }
   }
 
   removeItem(product: Product) {
-    const index: number = this.products!!.indexOf(product)
-    this.products?.splice(index, 1)
-    console.log(this.products?.length)
-
+    console.log("ON REMOVE:",product)
+    this.cartService.setProducts(product)
     window.location.reload()
   }
 
@@ -197,3 +174,4 @@ export class CartComponent implements OnInit {
   }
 
 }
+

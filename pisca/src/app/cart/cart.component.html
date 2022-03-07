@@ -10,7 +10,7 @@
   </div>
   <h3 class="title">Il mio carrello</h3>
   <div class="empty-list" *ngIf="isEmpty">
-    <h4 class="no-product">Il tuo carrello é vuoto. dai un'occhiata ai nostri prodotti!</h4>
+    <h4 class="no-product">Il tuo carrello é vuoto. Dai un'occhiata ai nostri prodotti!</h4>
   </div>
   <div class="basket" *ngIf="!isEmpty">
     <div class="basket-labels">
@@ -33,7 +33,7 @@
       <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
 
       <div class="remove">
-        <button (click)="removeItem(product)">Remove</button>
+        <button class="btn-remove" (click)="removeItem(product)">Remove</button>
       </div>
     </div>
     </ng-container>
@@ -43,7 +43,7 @@
       <div class="summary-total-items"><span class="total-items"></span> {{strTotal}} in your Bag</div>
       <div class="summary-total">
         <div class="total-title">Total</div>
-        <div class="total-value final-value" id="basket-total"><strong>{{totalPrice}}</strong></div>
+        <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong></div>
       </div>
       <div class="summary-checkout">
         <button class="checkout-cta" (click)="createOrder()">Checkout</button>

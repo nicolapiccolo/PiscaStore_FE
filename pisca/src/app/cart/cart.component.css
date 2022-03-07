@@ -430,3 +430,8 @@ aside {
     padding: 0 1rem;
   }
 }
+
+.remove .btn-remove:hover{
+  text-decoration: underline;
+  color: #111;
+}

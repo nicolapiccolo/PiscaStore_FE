@@ -18,7 +18,8 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
     </div>
-  `
+  `,
+  styleUrls: ['./modal.css']
 })
 export class ModalError {
 

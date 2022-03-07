@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {TokenStorageService} from "./service/token-storage.service";
 import {CartService} from "./service/cart.service";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit {
   username?: string;
   bagItems = 0;
 
-  constructor(private tokenStorageService: TokenStorageService, private cartService: CartService) { }
+  constructor(private tokenStorageService: TokenStorageService,
+              private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
 
@@ -44,8 +47,9 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-
-    window.location.reload();
+    this.router.navigate(['/home']).then(()=>{
+      window.location.reload()
+    });
   }
 
   updateSize(bagItems: number): void{
