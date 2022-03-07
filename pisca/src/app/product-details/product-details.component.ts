@@ -119,7 +119,7 @@ export class ProductDetailsComponent implements OnInit {
         if (this.cartService.addToCart(this.product)) {
           this.openSuccess("Aggiunto", "Articolo aggiunto al carrello")
           this.bagEvent.emit(this.cartService.getSize())
-        } else this.openError("Aggiunto", "", "L' articolo è già presente nel carrello", "")
+        } else this.openError("Errore", "", "L' articolo è già presente nel carrello", "")
       }
       else this.openError("Non sei loggato", "", "Per aggiungere un oggetto al carrello dei prima effettuare il login", "")
 

@@ -10,12 +10,14 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
               (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <span class="text-primary">{{message}}</span>
+      <p>{{message}}</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
     </div>
-  `
+  `,
+  styleUrls: ['./modal.css']
+
 })
 export class ModalSuccess {
 

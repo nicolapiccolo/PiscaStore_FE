@@ -10,14 +10,16 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
               (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <p><strong>{{message1}} "<span class="text-primary">{{name}}</span>" ?</strong></p>
+      <p><strong>{{message1}}<span class="text-primary">{{name}}</span>?</strong></p>
       <p>{{message2}}</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancella</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
     </div>
-  `
+  `,
+  styleUrls: ['./modal.css']
+
 })
 export class ModalConfirm {
 

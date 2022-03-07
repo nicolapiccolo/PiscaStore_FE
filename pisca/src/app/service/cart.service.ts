@@ -13,11 +13,20 @@ export class CartService {
   }
 
   addToCart(product: Product){
-    this.products = this.tokenStorage.getProduct()
-    const present = this.checkIfPresent(product.id)
-    if(!present) this.products.push(product)
-    this.tokenStorage.saveProduct(this.products)
-    return !present
+    console.log(this.products)
+
+
+    if(this.tokenStorage.getProduct() !=null){
+      this.products = this.tokenStorage.getProduct()
+      const present = this.checkIfPresent(product.id)
+      if(!present) this.products.push(product)
+      this.tokenStorage.saveProduct(this.products)
+      return !present
+    }else{
+      this.products.push(product)
+      this.tokenStorage.saveProduct(this.products)
+      return true
+    }
   }
 
   getProducts(){
@@ -28,6 +37,7 @@ export class CartService {
     const index: number = this.products!!.indexOf(product)
     this.products?.splice(index, 1)
     this.tokenStorage.saveProduct(this.products)
+    console.log("SET:",this.products)
   }
 
   checkIfPresent(id : number): boolean{

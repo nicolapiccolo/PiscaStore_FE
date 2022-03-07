@@ -19,7 +19,9 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 
     </div>
-  `
+  `,
+  styleUrls: ['./modal.css']
+
 })
 export class ModalProgress {
 

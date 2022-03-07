@@ -103,8 +103,9 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(product: Product) {
+    console.log("ON REMOVE:",product)
     this.cartService.setProducts(product)
-    this.ngOnInit()
+    window.location.reload()
   }
 
   async createOrder() {
