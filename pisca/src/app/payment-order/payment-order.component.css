@@ -6,12 +6,29 @@ html a {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
-.container {
-  background-color: #fff;
-  color: black;
-  font-family: 'Inter';
-  font-size: 62.5%;
+.card {
+  font-family: "Inter", sans-serif;
   margin-top: 50px;
+  width: 70%;
+}
+
+.card .title{
+  padding: 40px 0;
+  margin-left: 5px;
+  margin-right: 10px;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:20px;
+}
+
+.card .card-body{
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: #65635F;
+  margin-top: 5px;
 }
 
 a {
@@ -104,6 +121,8 @@ aside {
 
 .basket {
   width: 70%;
+  border-left: 1px solid #aaa;
+  border-radius: 10px;
 }
 
 .basket-module {
@@ -113,30 +132,6 @@ aside {
 label {
   display: block;
   margin-bottom: 0.3125rem;
-}
-
-.promo-code-field {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  transition: all 0.2s linear;
-  width: 48%;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-
-.promo-code-field:hover,
-.promo-code-field:focus {
-  border: 1px solid #999;
-}
-
-.promo-code-cta {
-  border-radius: 4px;
-  font-size: 0.625rem;
-  margin-left: 0.625rem;
-  padding: 0.6875rem 1.25rem 0.625rem;
 }
 
 .basket-labels {
@@ -183,23 +178,6 @@ li.subtotal:before {
   text-align: right;
 }
 
-.remove {
-  bottom: 1.125rem;
-  float: right;
-  position: absolute;
-  right: 0;
-  text-align: right;
-  width: 45%;
-}
-
-.remove button {
-  background-color: transparent;
-  color: #6D5D58;
-  float: none;
-  text-decoration: underline;
-  text-transform: uppercase;
-}
-
 .item-heading {
   font-size: 26px;
   padding-left: 4.375rem;
@@ -225,7 +203,9 @@ price-heading{
 .product-details {
   width: 65%;
   font-size: 20px;
+  font-family: "Inter", sans-serif;
 }
+
 .product-details.h5{
   font-size:26px;
 }
@@ -303,17 +283,6 @@ aside {
   transition: all .3s ease;
 }
 
-.promo-title {
-  float: left;
-  width: 70%;
-}
-
-.promo-value {
-  color: #8B0000;
-  float: left;
-  text-align: right;
-  width: 30%;
-}
 
 .summary-delivery {
   padding-bottom: 3rem;
@@ -368,8 +337,7 @@ aside {
   aside,
   .basket,
   .summary,
-  .item,
-  .remove {
+  .item{
     width: 100%;
   }
   .basket-labels {
@@ -398,15 +366,6 @@ aside {
   .quantity-field {
     float: none;
   }
-  .remove {
-    bottom: 0;
-    text-align: left;
-    margin-top: 0.75rem;
-    position: relative;
-  }
-  .remove button {
-    padding: 0;
-  }
   .summary {
     margin-top: 1.25rem;
     position: relative;
@@ -431,11 +390,6 @@ aside {
   }
 }
 
-.remove .btn-remove:hover{
-  text-decoration: underline;
-  color: #111;
-}
-
 .spinner {
   position: absolute;
   top: 50%;
@@ -455,4 +409,19 @@ aside {
 .spinner-grow{
   width: 5rem;
   height: 5rem;
+}
+
+.products-summary{
+  margin-top:50px;
+}
+
+.title-page {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.8em;
+  padding-bottom: 8px;
 }

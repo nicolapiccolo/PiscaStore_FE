@@ -29,5 +29,4 @@ export class AccountService {
     console.log(data)
     return this.http.put(AUTH_API + 'update',data,httpOptions);
   }
-
 }

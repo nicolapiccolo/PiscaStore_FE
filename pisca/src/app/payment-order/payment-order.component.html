@@ -1,0 +1,79 @@
+<body>
+<main>
+
+  <div class="spinner" *ngIf="loading$ | async">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <h3 class="title-page">Riepilogo ordine</h3>
+
+  <div class="summary-pane" *ngIf="!(loading$ | async)">
+    <div class="empty-list" *ngIf="isEmpty">
+      <h4 class="no-product">Il tuo ordine é vuoto. Dai un'occhiata ai nostri prodotti!</h4>
+    </div>
+
+
+    <div class="row products-summary" *ngIf="!isEmpty">
+      <div class="basket">
+        <ng-container *ngFor="let product of products">
+          <div class="basket-product">
+            <div class="item">
+              <div class="product-image">
+                <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}"
+                     onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h5><strong>{{product.name}}</strong></h5>
+                <p>{{product.dimensions}}</p>
+              </div>
+            </div>
+            <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
+          </div>
+        </ng-container>
+      </div>
+
+      <aside>
+        <div class="summary">
+          <div class="summary-total-items"><span class="total-items"></span> {{strTotal}} in your Order</div>
+          <div class="summary-total">
+            <div class="total-title">Total</div>
+            <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong>
+            </div>
+          </div>
+          <div class="summary-checkout">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="row-auto address-pane">
+
+      <div class="card">
+        <div class="row g-0">
+          <div class="col-4">
+            <h5 class="card-title title">Indirizzo di consegna</h5>
+          </div>
+          <div class="col-auto">
+            <div class="card-body">
+              <p class="card-text">{{address?.street}}</p>
+              <p class="card-text">{{address?.city}}, {{address?.zipCode}}</p>
+              <p class="card-text">{{address?.country}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+</body>
