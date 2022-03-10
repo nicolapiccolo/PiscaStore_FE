@@ -167,7 +167,14 @@ export class CartComponent implements OnInit {
     window.location.reload()
   }
 
-  createOrder() {
+
+  refresh(path: string): void{
+    if (window.location.pathname.toString() == path){
+      window.location.reload()
+    }
+  }
+
+  async createOrder() {
     if (this.currentUser > 0) {
       if (this.products != undefined && this.products.length > 0) {
         //this.orderService.setAddress(new Address('Viale Orazio 44','Andria (BT)', 'Italy','76123'))
