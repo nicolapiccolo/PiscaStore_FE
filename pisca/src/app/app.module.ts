@@ -40,8 +40,9 @@ import {ModalSuccess} from "./modal/modalSuccess";
 import {ModalAddress} from "./modal/modalAddress";
 import { CartComponent } from './cart/cart.component';
 import { CheckoutOrderComponent } from './checkout-order/checkout-order.component';
+import { PaymentOrderComponent } from './payment-order/payment-order.component';
+import {NgxPayPalModule} from "ngx-paypal";
 import {ModalInsertAddress} from "./modal/modalInsertAddress";
-
 
 
 
@@ -73,7 +74,8 @@ import {ModalInsertAddress} from "./modal/modalInsertAddress";
     ModalAddress,
     ModalInsertAddress,
     CartComponent,
-    CheckoutOrderComponent
+    CheckoutOrderComponent,
+    PaymentOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import {ModalInsertAddress} from "./modal/modalInsertAddress";
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    NgbModule
+    NgbModule,
+    NgxPayPalModule
   ],
   providers: [
     authInterceptorProviders,

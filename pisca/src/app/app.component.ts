@@ -4,6 +4,7 @@ import {CartService} from "./service/cart.service";
 import {ProductDetailsComponent} from "./product-details/product-details.component";
 import {Router} from "@angular/router";
 
+declare var paypal:any;
 
 @Component({
   selector: 'app-root',
