@@ -39,6 +39,8 @@ import {ModalError} from "./modal/modalError";
 import {ModalSuccess} from "./modal/modalSuccess";
 import { CartComponent } from './cart/cart.component';
 import { CheckoutOrderComponent } from './checkout-order/checkout-order.component';
+import { PaymentOrderComponent } from './payment-order/payment-order.component';
+import {NgxPayPalModule} from "ngx-paypal";
 
 
 
@@ -69,7 +71,8 @@ import { CheckoutOrderComponent } from './checkout-order/checkout-order.componen
     ModalError,
     ModalSuccess,
     CartComponent,
-    CheckoutOrderComponent
+    CheckoutOrderComponent,
+    PaymentOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,8 @@ import { CheckoutOrderComponent } from './checkout-order/checkout-order.componen
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    NgbModule
+    NgbModule,
+    NgxPayPalModule
   ],
   providers: [
     authInterceptorProviders,
