@@ -1,0 +1,75 @@
+<body>
+<main>
+  <div class="spinner" *ngIf="loading$ | async">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <h3 class="title">Riepilogo ordine ({{strTotal}})</h3>
+  <div class="basket">
+    <div class="row">
+      <div class="col">
+        <li class="index"><strong>1 Indirizzo di consegna</strong></li>
+      </div>
+      <div class="col col-center" *ngIf="isEmpty">
+        <li class="field">Nessun indirizzo presente</li>
+      </div>
+      <div class="col col-center">
+        <li class="field">{{currentAddress}}</li>
+      </div>
+      <div class="col col-right">
+        <li class="modify" ><button class="btn-modify" (click)="modifyAddress()">Modifica</button></li>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <li class="index"><strong>2 Modalità di pagamento</strong></li>
+      </div>
+      <div class="col col-center">
+        <li class="field">VISA</li>
+      </div>
+      <div class="col col-right">
+        <li class="modify">Modifica</li>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <li class="index"><strong>3 Rivedi gli articoli</strong></li>
+      </div>
+    </div>
+        <div class="basket basket-bottom">
+          <ng-container *ngFor="let product of products">
+            <div class="basket-product">
+              <div class="item">
+                <div class="product-image">
+                  <!--<img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}" onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'"  class="product-frame">-->
+                </div>
+                <div class="product-details">
+                  <h5><strong>{{product.name}}</strong></h5>
+                  <p>{{product.dimensions}}</p>
+                </div>
+              </div>
+              <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
+            </div>
+          </ng-container>
+        </div>
+
+
+  </div>
+  <aside *ngIf="!isEmpty">
+    <div class="summary">
+      <div class="summary-total-items"><span class="total-items"></span> {{strTotal}} in your Bag</div>
+      <div class="summary-total">
+        <div class="total-title">Total</div>
+        <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong></div>
+      </div>
+      <div class="summary-checkout">
+        <button href="/checkout" class="checkout-cta" routerLink="/checkout" >Checkout</button>
+      </div>
+    </div>
+  </aside>
+</main>
+</body>

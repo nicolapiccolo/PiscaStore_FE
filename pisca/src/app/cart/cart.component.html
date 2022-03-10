@@ -46,7 +46,7 @@
         <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong></div>
       </div>
       <div class="summary-checkout">
-        <button class="checkout-cta" (click)="createOrder()">Checkout</button>
+        <button href="/checkout" class="checkout-cta" routerLink="/checkout" (click)="refresh('/checkout')">Checkout</button>
       </div>
     </div>
   </aside>

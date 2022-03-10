@@ -108,6 +108,12 @@ export class CartComponent implements OnInit {
     window.location.reload()
   }
 
+  refresh(path: string): void{
+    if (window.location.pathname.toString() == path){
+      window.location.reload()
+    }
+  }
+
   async createOrder() {
 
     if (this.currentUser > 0) {

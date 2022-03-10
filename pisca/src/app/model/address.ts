@@ -12,6 +12,7 @@ export class Address{
     this.zipCode = zipCode;
   }
 
+
   toString(): string{
     return this.street.toString() + "\n" + this.city.toString() + ", " + this.zipCode.toString() +  "\n" + this.country.toString()
   }
