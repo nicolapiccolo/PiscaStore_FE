@@ -27,7 +27,7 @@ import {
   NgbdModalContent,
   NgbdModalError,
   NgbdModalProgress,
-  ProductInsertComponent
+  ProductInsertComponent,
 } from './product-insert/product-insert.component';
 import { DndDirective } from './dnd.directive';
 import { ProgressComponent } from './progress/progress.component';
@@ -37,8 +37,10 @@ import {ModalProgress} from "./modal/modalProgress";
 import {ModalConfirm} from "./modal/modalConfirm";
 import {ModalError} from "./modal/modalError";
 import {ModalSuccess} from "./modal/modalSuccess";
+import {ModalAddress} from "./modal/modalAddress";
 import { CartComponent } from './cart/cart.component';
 import { CheckoutOrderComponent } from './checkout-order/checkout-order.component';
+import {ModalInsertAddress} from "./modal/modalInsertAddress";
 
 
 
@@ -68,6 +70,8 @@ import { CheckoutOrderComponent } from './checkout-order/checkout-order.componen
     ModalConfirm,
     ModalError,
     ModalSuccess,
+    ModalAddress,
+    ModalInsertAddress,
     CartComponent,
     CheckoutOrderComponent
   ],
