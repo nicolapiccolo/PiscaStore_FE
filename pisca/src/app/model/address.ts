@@ -1,11 +1,15 @@
+import {Optional} from "@angular/core";
+
 export class Address{
+  id: number = 0
   street: string = "";
   city: string = "";
   country: string = "";
   zipCode: string = "";
 
 
-  constructor(street: string, city: string, country: string, zipCode: string) {
+  constructor(id: number, street: string, city: string, country: string, zipCode: string) {
+    this.id = id;
     this.street = street;
     this.city = city;
     this.country = country;
@@ -14,6 +18,9 @@ export class Address{
 
 
   toString(): string{
+    if(this.street.length>0 && this.city.length>0 && this.country.length>0 && this.zipCode.length>0)
     return this.street.toString() + "\n" + this.city.toString() + ", " + this.zipCode.toString() +  "\n" + this.country.toString()
+
+    else return "";
   }
 }

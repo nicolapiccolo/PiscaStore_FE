@@ -102,27 +102,6 @@ export class CartComponent implements OnInit {
         console.log("cannot retrive user")
         this.router.navigateByUrl("/login")
       });
-
-    const progress1 = this.openProgress("Caricamento risultato pagamento")
-    this.route.queryParams.subscribe((params:any) => {
-          progress1.close()
-          console.log(params); // { category: "fiction" }
-          if(params.token != null || params.token != undefined){
-            this.token = params.token;
-            if(this.token.length>0){
-
-              this.orderService.capture(this.token).subscribe((data)=>{
-                console.log(data)
-
-                if(data == "COMPLETED"){
-                  this.generateOrder()
-                }
-              })
-            }
-          }
-        }
-      );
-
   }
 
   emptyCart(){

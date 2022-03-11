@@ -49,7 +49,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     this.accountService.getAddresses().subscribe(
       data => {
         this.addressAvailable = true;
-        var address = new Address(data.street.toString(),data.city.toString(), data.country.toString(), data.zipCode.toString());
+        var address = new Address(0,data.street.toString(),data.city.toString(), data.country.toString(), data.zipCode.toString());
         this.address = address
         this.currentUser.address = address.toString();
 
@@ -75,7 +75,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     //const { name, email, phone} = this.form;
     console.log(this.form.submitted)
 
-    var address : Address = new Address(this.street,this.city, this.country, this.zipCode);
+    var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
 
     console.log('updating');
 
