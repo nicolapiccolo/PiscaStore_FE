@@ -19,7 +19,7 @@ export class ProfileEditComponent implements OnInit {
     this.accountService.getAddresses().subscribe(
       data => {
         this.addressAvailable = true;
-        var address = new Address(data.street.toString(),data.city.toString(), data.country.toString(), data.zipCode.toString());
+        var address = new Address(0,data.street.toString(),data.city.toString(), data.country.toString(), data.zipCode.toString());
         this.currentUser.address = address.toString();
         console.log(address.toString());
       },

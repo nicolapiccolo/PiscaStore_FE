@@ -90,7 +90,7 @@ export class ModalInsertAddress {
 
   onSubmit(){
     if(this.street!="" && this.city!="" && this.country!="" && this.zipCode!=""){
-      let address: Address = new Address(this.street, this.city, this.country, this.zipCode)
+      let address: Address = new Address(0,this.street, this.city, this.country, this.zipCode)
       this.modal.close(address)
     }
 

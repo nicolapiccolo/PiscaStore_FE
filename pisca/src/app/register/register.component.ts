@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     const { name, surname, username, email, password, phone, street, city, country, zipCode } = this.form;
 
-    var address : Address = new Address(this.form.street,this.form.city, this.form.country, this.form.zipCode);
+    var address : Address = new Address(0,this.form.street,this.form.city, this.form.country, this.form.zipCode);
 
     console.log('registering');
 

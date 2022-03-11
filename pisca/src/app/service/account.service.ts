@@ -26,7 +26,7 @@ export class AccountService {
 
   setAddress(data: any): Observable<any>{
     console.log(data)
-    return this.http.put(AUTH_API + 'create',data,httpOptions);
+    return this.http.post(AUTH_API + 'create',data,httpOptions);
   }
 
   getCurrentUser(): Observable<any> {
