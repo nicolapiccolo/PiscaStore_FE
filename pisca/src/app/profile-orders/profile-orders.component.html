@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="panel">
+
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+
+    <div class="order-list" *ngIf="!(loading$ | async)">
+      <h3 class="title">I miei ordini</h3>
+
+      <div class="empty-list" *ngIf="isEmpty">
+        <h4 class="no-product">Non hai ancora messo acquistato nessun prodotto, inizia a comprare!</h4>
+      </div>
+
+      <ng-container *ngFor="let order of orders">
+        <div class="row">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-auto" style="margin-right:40px;">
+                  <p>ORDINE EFFETTUATO IL: </p>
+                  <p>{{order.creation}}</p>
+                </div>
+                <div class="col-auto" style="margin-right:40px;">
+                  <p>TOTALE     </p>
+                  <p><strong>{{ order.total | currency: 'EUR'}}</strong></p>
+                </div>
+                <div class="col-auto" *ngIf="order.address!=null">
+                  <p>INVIATO A: </p>
+                  <p class="address" placement="bottom" ngbPopover="{{order.address.toString()}}"><strong>{{ order.address.street}}</strong></p>
+                </div>
+                <div class="col right-block align-content-end text-end">
+                  <p>ORDINE #: <strong>{{ order.id }}</strong></p>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngFor="let item of order.products">
+              <div class="card-body">
+                <div class="row product_info">
+                  <div class="col-auto">
+                    <img class="product-image" height="90" width="90" src="http://localhost:8080/catalog/api/v1/image/{{item.image}}"
+                         onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" >
+                  </div>
+                  <div class="col">
+                    <h5 class="product_title">{{item.name}}</h5>
+                    <h5 class="product_dimension">{{item.dimensions}}</h5>
+                    <h4 class="product_price">{{ item.price | currency: 'EUR' }}</h4>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

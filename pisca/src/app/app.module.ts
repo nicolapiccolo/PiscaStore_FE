@@ -43,6 +43,7 @@ import { CheckoutOrderComponent } from './checkout-order/checkout-order.componen
 import { PaymentOrderComponent } from './payment-order/payment-order.component';
 import {NgxPayPalModule} from "ngx-paypal";
 import {ModalInsertAddress} from "./modal/modalInsertAddress";
+import { ProfileOrdersComponent } from './profile-orders/profile-orders.component';
 
 
 
@@ -75,7 +76,8 @@ import {ModalInsertAddress} from "./modal/modalInsertAddress";
     ModalInsertAddress,
     CartComponent,
     CheckoutOrderComponent,
-    PaymentOrderComponent
+    PaymentOrderComponent,
+    ProfileOrdersComponent
   ],
   imports: [
     BrowserModule,

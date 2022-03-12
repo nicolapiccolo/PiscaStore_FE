@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 body {
-  font-family: "Poppins", sans-serif;
   color: #444444;
   overflow: auto;
 }
@@ -42,29 +41,15 @@ a:hover {
 .section-products .single-product .part-2 h4{
   font-weight: lighter;
   text-align: center;
-
 }
 
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.section-products .single-product .part-2 .product-title:hover{
+  text-decoration: underline;
+}
+.section-products .single-product .part-2 .product-price:hover{
+  text-decoration: underline;
 }
 
-.spinner-border{
-  width: 5rem;
-  height: 5rem;
-}
-
-.spinner-grow{
-  width: 5rem;
-  height: 5rem;
-}
 
 .no-product{
   position: absolute;
