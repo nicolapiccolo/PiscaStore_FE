@@ -1,37 +1,55 @@
 <div class="container">
-  <div class="spinner" *ngIf="loading$ | async">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-    <div class="spinner-grow" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
-  <div class="container" *ngIf="!(loading$ | async)">
-    <div class="row center">
-      <div class="col">
-        <button class="box addBox" (click)="addAddress()">
-          <h5>+</h5>
-          <strong>Aggiungi Indirizzo</strong>
-        </button>
+
+  <div class="panel">
+
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
-      <div class="col" *ngIf="isEmpty">
-        <h4>Nessun indirizzo salvato!</h4>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
-      <ng-container *ngFor="let address of addresses">
-        <div class="col box contentBox">
-          <div class="header">
-            <h6>INDIRIZZO #{{address.id}}</h6>
-          </div>
-          <div class="address-section">
-            <p><strong>{{address.street}}</strong></p>
-            <p>{{address.city}}, {{address.country}} {{address.zipCode}}</p>
-          </div>
-          <div class="footer">
-            <button class="remove" (click)="removeAddress(address)">rimuovi</button>
-          </div>
+    </div>
+
+    <div class="container" *ngIf="!(loading$ | async)">
+
+      <div class="bread">
+        <ul class="breadcrumbs">
+          <li class="breadcrumb-item"><a href="/profile">Il mio profilo</a></li>
+          <li class="breadcrumb-item active">I miei indirizzi</li>
+        </ul>
+      </div>
+
+
+      <h3 class="title">I miei indirizzi</h3>
+
+      <div class="row center">
+        <div class="col">
+          <button class="box addBox" (click)="addAddress()">
+            <h5>+</h5>
+            <strong>Aggiungi Indirizzo</strong>
+          </button>
         </div>
-      </ng-container>
+        <div class="col" *ngIf="isEmpty">
+          <h4>Nessun indirizzo salvato!</h4>
+        </div>
+        <ng-container *ngFor="let address of addresses">
+          <div class="col box contentBox">
+            <div class="header">
+              <h6>INDIRIZZO #{{address.id}}</h6>
+            </div>
+            <div class="address-section">
+              <p><strong>{{address.street}}</strong></p>
+              <p>{{address.city}}, {{address.country}} {{address.zipCode}}</p>
+            </div>
+            <div class="footer">
+              <button class="remove" (click)="removeAddress(address)">rimuovi</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
+
   </div>
+
 </div>
