@@ -23,4 +23,11 @@ export class Address{
 
     else return "";
   }
+
+  toHTML(): string{
+    if(this.street.length>0 && this.city.length>0 && this.country.length>0 && this.zipCode.length>0)
+      return this.street.toString() + ", " + this.city.toString() + ", " + this.zipCode.toString() + ", " + this.country.toString()
+
+    else return "";
+  }
 }

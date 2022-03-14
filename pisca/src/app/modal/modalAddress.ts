@@ -23,7 +23,7 @@ import {TokenStorageService} from "../service/token-storage.service";
           <label>
           <input type="radio" name="radioChoice" id="lab_{{address}}"
                  [(ngModel)]="this.radioChoice" [value]="address"/>
-          <span>{{address}}</span>
+          <span>{{address.toHTML()}}</span>
           </label>
         </ng-container>
       </form>
