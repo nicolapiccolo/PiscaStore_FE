@@ -83,12 +83,12 @@ export class ModalAddress {
       this.accountService.setAddress(data).subscribe(
         d => {
           console.log(d);
+          this.modal.close("newAddress")
         },
         err => {
           console.log(err);
         }
       )
-      this.modal.close("newAddress")
     }, (reason) => {
       // on dismiss x close
       console.log("dismiss")

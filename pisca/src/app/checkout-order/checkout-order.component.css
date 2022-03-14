@@ -585,3 +585,8 @@ body {
   line-height: 25px;
   color: #65635F;
 }
+
+.order-success img {
+  width: 128px;
+  height: 128px;
+}

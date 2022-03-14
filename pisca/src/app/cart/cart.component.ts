@@ -30,9 +30,9 @@ import {ModalSuccess} from "../modal/modalSuccess";
 export class CartComponent implements OnInit {
 
   currentUser: number = 0;
-  products?: Array<Product>;
+  products: Array<Product> = new Array<Product>();
   isEmpty = true;
-  size = this.products?.length;
+  size = this.products.length;
   loading$ = this.loader.loading$;
   strTotal = ""
   totalPrice: number = 0;
@@ -86,13 +86,17 @@ export class CartComponent implements OnInit {
           console.log("cannot retrive user")
         } else {
           this.currentUser = data
-          this.products = this.tokenStorage.getProduct()
-          if (this.products!!.length > 0) {
-            this.isEmpty = false;
-            this.size = this.products?.length;
-            this.getTotalItems();
-            this.getTotalPrice();
+
+          if(this.tokenStorage.getProduct()!=null){
+            this.products = this.tokenStorage.getProduct();
+            if (this.products.length > 0) {
+              this.isEmpty = false;
+              this.size = this.products?.length;
+              this.getTotalItems();
+              this.getTotalPrice();
+            }
           }
+
           console.log(this.isEmpty)
         }
       },
