@@ -19,10 +19,10 @@
     <ng-container *ngFor="let product of products">
       <div class="single-product" (click)="openDetails(product.id)">
         <figure class="product__figure">
-          <img *ngIf="!product.image" src='http://localhost:8080/catalog/api/v1/image/not.png' class="product-image"
+          <img *ngIf="!product.image" src="assets/Images/not.png" class="product-image"
                [routerLink]="['/catalog', product.id]" alt="" width="300" height="300"/>
           <img *ngIf="product.image" src='http://localhost:8080/catalog/api/v1/image/{{product.image}}'
-               onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" class="product-image"
+               onerror="this.src=assets/Images/not.png" class="product-image"
                [routerLink]="['/catalog', product.id]" alt="" width="300" height="300"/>
         </figure>
         <a>

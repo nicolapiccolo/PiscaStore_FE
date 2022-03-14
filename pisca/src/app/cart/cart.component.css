@@ -10,7 +10,6 @@ html a {
   background-color: #fff;
   color: black;
   font-family: 'Inter';
-  font-size: 62.5%;
   margin-top: 50px;
 }
 
@@ -436,23 +435,13 @@ aside {
   color: #111;
 }
 
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.spinner-border{
-  width: 5rem;
-  height: 5rem;
-}
-
-.spinner-grow{
-  width: 5rem;
-  height: 5rem;
+.title{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 48px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 8px;
 }

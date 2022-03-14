@@ -17,7 +17,7 @@
           <ngb-carousel>
             <ng-template ngbSlide *ngFor="let image of images">
               <div class="wrapper">
-                <img [src]=image.src onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" >
+                <img [src]=image.src onerror="this.src=assets/Images/not.png" >
               </div>
               <div class="carousel-caption">
                 <h3>{{ image.title }}</h3>

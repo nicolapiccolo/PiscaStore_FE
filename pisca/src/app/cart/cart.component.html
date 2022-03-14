@@ -1,64 +1,66 @@
 <body>
 <main>
-  <div class="spinner" *ngIf="loading$ | async">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-    <div class="spinner-grow" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-
-  </div>
-
-  <div class="cart-pane" *ngIf="!(loading$ | async)">
-
-    <h3 class="title">Il mio carrello</h3>
-    <div class="empty-list" *ngIf="isEmpty">
-      <h4 class="no-product">Il tuo carrello é vuoto. Dai un'occhiata ai nostri prodotti!</h4>
-    </div>
-
-    <div class="basket" *ngIf="!isEmpty">
-      <div class="basket-labels">
-        <ul>
-          <li class="item item-heading">Item</li>
-          <li class="price price-heading">Price</li>
-        </ul>
+    <div class="spinner" *ngIf="loading$ | async">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
-      <ng-container *ngFor="let product of products">
-        <div class="basket-product">
-          <div class="item">
-            <div class="product-image">
-              <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}"
-                   onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'" class="product-frame">
-            </div>
-            <div class="product-details">
-              <h5><strong>{{product.name}}</strong></h5>
-              <p>{{product.dimensions}}</p>
-            </div>
-          </div>
-          <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
-
-          <div class="remove">
-            <button class="btn-remove" (click)="removeItem(product)">Remove</button>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-
-    <aside *ngIf="!isEmpty">
-      <div class="summary">
-        <div class="summary-total-items"><span class="total-items"></span> {{strTotal}} in your Bag</div>
-        <div class="summary-total">
-          <div class="total-title">Total</div>
-          <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong></div>
-        </div>
-        <div class="summary-checkout">
-          <button class="checkout-cta" routerLink="/checkout">Checkout</button>
-          <!--<ngx-paypal [config]="payPalConfig" (click)="createOrder()"></ngx-paypal>-->
-        </div>
+      <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
 
-    </aside>
-  </div>
+    </div>
+
+    <div class="cart-pane" *ngIf="!(loading$ | async)">
+
+      <h3 class="title">Il mio carrello</h3>
+
+      <div class="empty-list" *ngIf="isEmpty">
+        <h4 class="no-product">Il tuo carrello é vuoto. Dai un'occhiata ai nostri prodotti!</h4>
+      </div>
+
+      <div class="basket" *ngIf="!isEmpty">
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Item</li>
+            <li class="price price-heading">Price</li>
+          </ul>
+        </div>
+        <ng-container *ngFor="let product of products">
+          <div class="basket-product">
+            <div class="item">
+              <div class="product-image">
+                <img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}"
+                     onerror="this.src=assets/Images/not.png" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h5><strong>{{product.name}}</strong></h5>
+                <p>{{product.dimensions}}</p>
+              </div>
+            </div>
+            <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
+
+            <div class="remove">
+              <button class="btn-remove" (click)="removeItem(product)">Remove</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <aside *ngIf="!isEmpty">
+        <div class="summary">
+          <div class="summary-total-items"><span class="total-items"></span> {{strTotal}} in your Bag</div>
+          <div class="summary-total">
+            <div class="total-title">Total</div>
+            <div class="total-value final-value" id="basket-total"><strong>{{totalPrice | currency: 'EUR'}}</strong>
+            </div>
+          </div>
+          <div class="summary-checkout">
+            <button class="checkout-cta" routerLink="/checkout">Checkout</button>
+            <!--<ngx-paypal [config]="payPalConfig" (click)="createOrder()"></ngx-paypal>-->
+          </div>
+        </div>
+
+      </aside>
+    </div>
 </main>
 </body>
