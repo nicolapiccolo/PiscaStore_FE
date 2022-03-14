@@ -172,7 +172,11 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
   }
 
-
+  refresh(path: string): void{
+    if (window.location.pathname.toString() == path){
+      window.location.reload()
+    }
+  }
 
 
 

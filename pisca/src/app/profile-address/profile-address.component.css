@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+.box{
+  height: 230px;
+  width: 230px;
+  margin: 20px;
+  padding: 20px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 25px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  font-family: "Inter", sans-serif;
+
+}
+
+.h5, h5{
+  color: #C7C7C7;
+  font-size: 70px;
+  margin-bottom: 0;
+}
+
+.h6, h6{
+  color: #565959;
+  font-size: 12px;
+  text-align: left;
+}
+
+.addBox{
+  border-width: 2px;
+  border-style: dashed;
+  border-color: #C7C7C7;
+  color: #565959;
+  font-size: 24px;
+  text-align: center;
+}
+
+.contentBox{
+  border-width: 1px;
+  border-color: #C7C7C7;
+  box-shadow: 0 2px 1px 0 rgb(0 0 0 / 16%);
+  border-style: solid;
+}
+
+.address-section{
+  padding-left: 5px;
+  padding-top: 40px;
+  text-align: left;
+}
+
+.center{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  padding-left: 20px;
+}
+
+.horizontal-center{
+  position: relative;
+  text-align: center;
+}
+
+.col{
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.remove{
+  font-size: 14px;
+  background-color: transparent;
+  color: #6D5D58;
+  float: none;
+  text-decoration: underline;
+  text-transform: uppercase;
+  border: none;
+}
+
+.footer{
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+}
