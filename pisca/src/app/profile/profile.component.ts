@@ -29,10 +29,10 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
   surname: string = ""
   email: string = ""
   phone: string = ""
-  street: string = ""
-  city: string = ""
-  country: string = ""
-  zipCode: string = ""
+  //street: string = ""
+  //city: string = ""
+  //country: string = ""
+  //zipCode: string = ""
 
 
 
@@ -88,11 +88,9 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     modalRef.componentInstance.title = "Conferma modifica"
     modalRef.componentInstance.name = "";
     modalRef.componentInstance.message1 = "Vuoi confermare la modifica al tuo profilo ";
-
     modalRef.componentInstance.message2 = "Proseguendo le tue informazioni personali verranno aggiornate";
 
     modalRef.result.then((data) => {
-
       console.log(this.form.submitted)
 
       var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
@@ -105,6 +103,27 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
       var formData: any = new FormData();
 
+    /*this.accountService.updateUser(    {name,surname,email,phone}
+    ).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+
+    this.authService.register(name, surname, username, email, password, phone, address).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this .errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );*/
       const name = this.name
       const surname = this.surname
       const email = this.email
@@ -140,15 +159,6 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     this.email = this.currentUser.email;
     this.phone = this.currentUser.phone;
     this.surname = this.currentUser.surname;
-
-    if(this.address !== null){
-
-      this.street = this.address.street;
-      this.zipCode = this.address.zipCode;
-      this.city = this.address.city;
-      this.country = this.address.country;
-
-    }
 
   }
 

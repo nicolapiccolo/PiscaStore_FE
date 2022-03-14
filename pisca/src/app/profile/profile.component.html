@@ -67,33 +67,36 @@
               </div>
             </div>
             <hr>
-            <div *ngIf="addressAvailable">
+              <!--<div *ngIf="addressAvailable">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Address</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary" style="white-space: pre-line">
+                    {{ currentUser.address }}
+                  </div>
+                </div>
+                <hr>
+              </div>
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
+                  <h6 class="mb-0">Roles</h6>
                 </div>
-                <div class="col-sm-9 text-secondary" style="white-space: pre-line">
-                  {{ currentUser.address }}
+                <div class="col-sm-9 text-secondary">
+                  <ul>
+                    <li *ngFor="let role of currentUser.roles">
+                      {{ role }}
+                    </li>
+                  </ul>
                 </div>
               </div>
-              <hr>
-            </div>
-            <!--<div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Roles</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <ul>
-                  <li *ngFor="let role of currentUser.roles">
-                    {{ role }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <hr> -->
+              <hr> -->
             <div class="row">
               <div class="col-sm-12">
                 <button class="button" (click)="showEdit()">MODIFICA </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary px-4" (click)="showEdit()">Manage Address</button>
               </div>
             </div>
           </div>
@@ -154,7 +157,7 @@
               </div>
             </div>
 
-            <div class="row mb-3" >
+            <!--<div class="row mb-3" >
               <div class="col-sm-3">
                 <h6 class="mb-0">Country</h6>
               </div>
@@ -201,7 +204,7 @@
                        [(ngModel)]="zipCode"
                 />
               </div>
-            </div>
+            </div>-->
 
             <div class="row">
               <div class="col-sm-3"></div>

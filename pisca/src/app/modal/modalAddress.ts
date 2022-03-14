@@ -8,6 +8,7 @@ import {TokenStorageService} from "../service/token-storage.service";
 
 @Component({
   selector: 'ngbd-modal-content',
+  styleUrls: ['./modal.scss'],
   template: `
     <div class="modal-header">
       <h4 class="modal-title" id="modal-title">Modifica Indirizzo</h4>
@@ -16,28 +17,29 @@ import {TokenStorageService} from "../service/token-storage.service";
     </div>
     <div class="modal-body">
       <p><strong>I tuoi indirizzi<span class="text-primary"></span></strong></p>
-      <ng-container *ngFor="let address of addresses">
-        <div>
-        <label for="lab_{{address}}">{{address}}</label>
-        <input type="radio" name="radioChoice" id="lab_{{address}}"
-               [(ngModel)]="this.radioChoice" [value]="address"/>
-        </div>
-      </ng-container>
-      <button class="btn-remove" (click)="addAddress()">+ Aggiungi un nuovo indirizzo</button>
+
+      <form>
+        <ng-container *ngFor="let address of addresses">
+          <label>
+          <input type="radio" name="radioChoice" id="lab_{{address}}"
+                 [(ngModel)]="this.radioChoice" [value]="address"/>
+          <span>{{address}}</span>
+          </label>
+        </ng-container>
+      </form>
+      <button class="addAddress btn-addAddress" (click)="addAddress()">+ Aggiungi un nuovo indirizzo</button>
     </div>
+
     <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="onSubmit()">Ok</button>
+      <h5 class="alert-msg">{{errorMessage}}</h5>
+      <button type="button" class="btn btn-danger" (click)="onSubmit()">Conferma</button>
     </div>
-  `,
-  styleUrls: ['./modal.css']
+  `
 
 })
 export class ModalAddress {
   radioChoice?: Address;
-  name: string = '';
-  title: string = ''
-  message1: string = '';
-  message2: string = '';
+  errorMessage: string = '';
   addresses: Array<Address> = new Array<Address>();
 
   constructor(public modal: NgbActiveModal,
@@ -56,14 +58,15 @@ export class ModalAddress {
 
   onSubmit(){
     if(this.radioChoice != null){
+      this.errorMessage = ""
       this.tokenStorage.saveAddress(this.radioChoice);
       this.modal.close(this.radioChoice);
       console.log("SELECTED ADDRESS: ",this.radioChoice.street)
     }
+    else this.errorMessage = "Nessun indirizzo selezionato"
   }
 
   addAddress(){
-    this.modal.close()
 
     const modalRef = this.modalService.open(ModalInsertAddress);
     modalRef.componentInstance.title = "Elimina articolo"
@@ -85,7 +88,7 @@ export class ModalAddress {
           console.log(err);
         }
       )
-
+      this.modal.close("newAddress")
     }, (reason) => {
       // on dismiss x close
       console.log("dismiss")

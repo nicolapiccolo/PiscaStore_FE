@@ -10,11 +10,11 @@ export class CartService {
   products: Array<Product> = new Array()
 
   constructor(private tokenStorage: TokenStorageService) {
+    this.products = this.tokenStorage.getProduct()
   }
 
   addToCart(product: Product){
     console.log(this.products)
-
 
     if(this.tokenStorage.getProduct() !=null){
       this.products = this.tokenStorage.getProduct()

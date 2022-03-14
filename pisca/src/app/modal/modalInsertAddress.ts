@@ -64,19 +64,21 @@ import {AccountService} from "../service/account.service";
             <input type="text" class="form-control"
                    name="zipCode"
                    [(ngModel)]="zipCode" required>
-            <div class="invalid-feedback">
-              Please choose a username.
-            </div>
+
           </div>
         </div>
 
       </div>
     </form>
+
     <div class="modal-footer">
+      <div class="alert-msg">
+        {{errorMsg}}
+      </div>
       <button type="button" class="btn btn-danger" (click)="onSubmit()">Salva</button>
     </div>
   `,
-  styleUrls: ['./modal.css']
+  styleUrls: ['./modal.scss']
 
 })
 export class ModalInsertAddress {
@@ -85,14 +87,17 @@ export class ModalInsertAddress {
   street: string = '';
   city: string = '';
   zipCode: string = '';
+  errorMsg = "";
   constructor(public modal: NgbActiveModal, private modalService: NgbModal) {
   }
 
   onSubmit(){
     if(this.street!="" && this.city!="" && this.country!="" && this.zipCode!=""){
+      this.errorMsg = ""
       let address: Address = new Address(0,this.street, this.city, this.country, this.zipCode)
       this.modal.close(address)
     }
+    else this.errorMsg = "Informazioni mancanti"
 
   }
 
