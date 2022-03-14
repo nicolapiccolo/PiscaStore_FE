@@ -6,6 +6,11 @@ import {AccountService} from "../service/account.service";
 import {FormCanDeactivate} from "../form-can-deactivate/form-can-deactivate";
 import {NgForm} from "@angular/forms";
 import {LoadingService} from "../service/loading.service";
+import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
+import {ModalError} from "../modal/modalError";
+import {ModalSuccess} from "../modal/modalSuccess";
+import {NgbdModalProgress} from "../product-insert/product-insert.component";
+import {ModalConfirm} from "../modal/modalConfirm";
 
 @Component({
   selector: 'app-profile',
@@ -36,7 +41,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
   loading$ = this.loader.loading$;
 
-  constructor(private accountService: AccountService, private token: TokenStorageService, public loader: LoadingService) {
+  constructor(private accountService: AccountService, private token: TokenStorageService, public loader: LoadingService, private modalService: NgbModal) {
     super();
   }
 
@@ -49,11 +54,16 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     this.accountService.getAddresses().subscribe(
       data => {
         this.addressAvailable = true;
-        var address = new Address(0,data.street.toString(),data.city.toString(), data.country.toString(), data.zipCode.toString());
-        this.address = address
-        this.currentUser.address = address.toString();
 
-        console.log(address.toString());
+        console.log(data);
+
+        if(data.length>0){
+          const ad = data[0];
+          var address = new Address(ad.id,ad.street.toString(),ad.city.toString(), ad.country.toString(), ad.zipCode.toString());
+          this.address = address
+          this.currentUser.address = address.toString();
+        }
+        //console.log(address.toString());
       },
       err => {
         console.log("Errore: Indirizzo non disponibile")
@@ -61,6 +71,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
       }
     );
   }
+
 
   showEdit(): void{
     this.isEditing = true;
@@ -73,26 +84,26 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
   onSubmit() : void{
     //const { name, email, phone} = this.form;
-    console.log(this.form.submitted)
+    const modalRef = this.modalService.open(ModalConfirm);
+    modalRef.componentInstance.title = "Conferma modifica"
+    modalRef.componentInstance.name = "";
+    modalRef.componentInstance.message1 = "Vuoi confermare la modifica al tuo profilo ";
+    modalRef.componentInstance.message2 = "Proseguendo le tue informazioni personali verranno aggiornate";
 
-    //var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
+    modalRef.result.then((data) => {
+      console.log(this.form.submitted)
 
-    console.log('updating');
+      var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
 
-    //var addresses : Address[] =  [address];
+      console.log('updating');
 
-    //var body = this.name
+      var addresses : Address[] =  [address];
 
-    var formData: any = new FormData();
+      //var body = this.name
 
-    const name = this.name
-    const surname = this.surname
-    const email = this.email
-    const phone = this.phone
+      var formData: any = new FormData();
 
-
-
-    this.accountService.updateUser(    {name,surname,email,phone}
+    /*this.accountService.updateUser(    {name,surname,email,phone}
     ).subscribe(
       data => {
         console.log(data);
@@ -102,7 +113,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
       }
     )
 
-    /*this.authService.register(name, surname, username, email, password, phone, address).subscribe(
+    this.authService.register(name, surname, username, email, password, phone, address).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -113,6 +124,33 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
         this.isSignUpFailed = true;
       }
     );*/
+      const name = this.name
+      const surname = this.surname
+      const email = this.email
+      const phone = this.phone
+
+
+
+      this.accountService.updateUser(    {name,surname,email,phone, addresses}
+      ).subscribe(
+        data => {
+          console.log(data);
+          this.openSuccess("Profilo aggiornato","Le informazioni del tuo profilo sono state aggiornate con successo!").result.then(data=>{
+            window.location.reload()
+          },reason => {
+            window.location.reload()
+          });
+        },
+        err => {
+          this.openError("Errore aggiornamento","","Non è stato possibile aggiornare le informazioni del tuo profilo","ERR_UPDATE"+err.toString())
+          console.log(err);
+        }
+      )
+
+    }, (reason) => {
+      // on dismiss x close
+      console.log("dismiss")
+    });
   }
 
   compileForm(): void{
@@ -121,6 +159,36 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     this.email = this.currentUser.email;
     this.phone = this.currentUser.phone;
     this.surname = this.currentUser.surname;
+
+  }
+
+  openError(title: string, name: string, error: string, error_code: string){
+    const modalRef = this.modalService.open(ModalError);
+    modalRef.componentInstance.title = title
+    modalRef.componentInstance.name = name;
+    modalRef.componentInstance.error = error;
+    modalRef.componentInstance.error_code = error_code;
+  }
+
+  openSuccess(title: string ,message: string){
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    const modalRef = this.modalService.open(ModalSuccess,ngbModalOptions);
+    modalRef.componentInstance.title = title
+    modalRef.componentInstance.message = message;
+    return modalRef;
+  }
+
+  openProgress(message: string) {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    const modalRef = this.modalService.open(NgbdModalProgress, ngbModalOptions);
+    modalRef.componentInstance.message = message;
+    return modalRef
 
   }
 

@@ -1,5 +1,7 @@
 <div class="container">
 
+
+
   <form
     *ngIf="!isSuccessful && !(loading$ | async)"
     name="form"
@@ -7,11 +9,20 @@
     #f="ngForm"
     novalidate>
 
+
+
     <div class="form-group">
       <div class="form-row">
         <div class="col-auto">
 
           <div class="image-pane">
+            <div class="bread align-content-center" style="margin-bottom:30px;">
+              <ul class="breadcrumbs">
+                <li class="breadcrumb-item"><a href="/profile">Il mio profilo</a></li>
+                <li class="breadcrumb-item active">Vendi un prodotto</li>
+              </ul>
+            </div>
+
             <div class="product_image" appDnd (fileDropped)="onFileDropped($event)">
               <!--https://i.ibb.co/gvyC8mn/insert.png-->
               <!--<img *ngIf="image" src='http://localhost:8080/catalog/api/v1/image/{{image}}' alt="" width = "382" height = "592">-->
@@ -58,6 +69,8 @@
         <div class="col-8 ml-auto">
 
           <div class="product-form">
+
+
             <h3 class="title">Dettagli Articolo</h3>
 
             <div class="form-group">
@@ -143,7 +156,8 @@
                      minlength="2"
                      #price="ngModel">
               <small id="priceHelp" class="form-text text-muted">The price must include shipment cost</small>
-            </span>
+
+              </span>
 
               <div
                 class="alert alert-danger"

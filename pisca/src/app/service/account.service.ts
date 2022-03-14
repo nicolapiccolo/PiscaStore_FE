@@ -29,6 +29,10 @@ export class AccountService {
     return this.http.post(AUTH_API + 'create',data,httpOptions);
   }
 
+  getAddressById(id: number): Observable<any>{
+    return this.http.get(AUTH_API + 'address/' + id,httpOptions);
+  }
+
   getCurrentUser(): Observable<any> {
     return this.http.get(AUTH_API + 'current', httpOptions);
   }
