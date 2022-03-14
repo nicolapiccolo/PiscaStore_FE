@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-auto" *ngIf="order.address!=null">
                   <p>INVIATO A: </p>
-                  <p class="address" placement="bottom" ngbPopover="{{order.address.toString()}}"><strong>{{ order.address.street}}</strong></p>
+                  <p class="address" placement="bottom" ngbPopover="{{order.address.toHTML()}}"><strong>{{ order.address.street}}</strong></p>
                 </div>
                 <div class="col right-block align-content-end text-end">
                   <p>ORDINE #: <strong>{{ order.id }}</strong></p>
