@@ -132,7 +132,6 @@ export class CartComponent implements OnInit {
     return this.strTotal
   }
 
-
   getTotalPrice() {
     this.totalPrice = 0
     for (let product of this.products!!) {

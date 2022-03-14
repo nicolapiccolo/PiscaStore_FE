@@ -16,6 +16,7 @@ import {ProductAuthorComponent} from "./product-author/product-author.component"
 import {CartComponent} from "./cart/cart.component";
 import {PaymentOrderComponent} from "./payment-order/payment-order.component";
 import {CheckoutOrderComponent} from "./checkout-order/checkout-order.component";
+import {ProfileOrdersComponent} from "./profile-orders/profile-orders.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'profile_edit', component: ProfileEditComponent},
+  { path: 'profile_order', component: ProfileOrdersComponent},
   { path: 'catalog', component: ProductListComponent},
   { path: 'catalog/category/1', component: ProductListComponent},
   { path: 'catalog/category/2', component: ProductListComponent},

@@ -60,23 +60,21 @@ body{
   box-shadow: none!important;
 }
 
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.spinner-border{
-  width: 5rem;
-  height: 5rem;
-}
-
-.spinner-grow{
-  width: 5rem;
-  height: 5rem;
+.button {
+  font-style: normal;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #6D5D58;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10px;
+  width: 100%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-top: 20px;
+  vertical-align:middle;
+  margin-bottom: 20px;
 }

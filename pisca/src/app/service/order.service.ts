@@ -33,7 +33,11 @@ export class OrderService {
   }
 
   public findById(id: number): Observable<any> {
-    return this.http.get<any>(API_URL + "order/" + id,httpOptions)
+    return this.http.get<any>(API_URL + id,httpOptions)
+  }
+
+  public findByUser(id_user: number): Observable<any> {
+    return this.http.get<any>(API_URL + "user/" + id_user,httpOptions)
   }
 
 
