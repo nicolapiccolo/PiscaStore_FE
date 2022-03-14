@@ -44,9 +44,22 @@
 }
 
 
-li.active {   text-decoration: underline;
+.centernav li.active {   text-decoration: underline;
 }
 
-li:hover {
+.centernav li:hover {
   text-decoration: underline;
 }
+
+
+.dropdown-menu  li:hover{
+  color: #FE7958;
+
+}
+
+.dropdown-item{
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+
