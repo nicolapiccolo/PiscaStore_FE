@@ -37,6 +37,10 @@ export class AccountService {
     return this.http.get(AUTH_API + 'current', httpOptions);
   }
 
+  getCurrentInfo(): Observable<any> {
+    return this.http.get(AUTH_API + 'current/info', httpOptions);
+  }
+
   updateUser(data: any) : Observable<any>{
     console.log(data)
     return this.http.put(AUTH_API + 'update',data,httpOptions);
