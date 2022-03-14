@@ -19,12 +19,6 @@
       </div>
 
       <div class="basket" *ngIf="!isEmpty">
-        <div class="basket-labels">
-          <ul>
-            <li class="item item-heading">Item</li>
-            <li class="price price-heading">Price</li>
-          </ul>
-        </div>
         <ng-container *ngFor="let product of products">
           <div class="basket-product">
             <div class="item">
@@ -33,11 +27,11 @@
                      onerror="this.src=assets/Images/not.png" class="product-frame">
               </div>
               <div class="product-details">
-                <h5><strong>{{product.name}}</strong></h5>
-                <p>{{product.dimensions}}</p>
+                <h5 class="product-title">{{product.name}}</h5>
+                <h5 class="product-dimensions">{{product.dimensions}}</h5>
               </div>
             </div>
-            <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
+            <div class="product-price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
 
             <div class="remove">
               <button class="btn-remove" (click)="removeItem(product)">Remove</button>

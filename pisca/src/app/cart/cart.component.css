@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 html,
 html a {
   -webkit-font-smoothing: antialiased;
@@ -114,30 +112,6 @@ label {
   margin-bottom: 0.3125rem;
 }
 
-.promo-code-field {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  transition: all 0.2s linear;
-  width: 48%;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-
-.promo-code-field:hover,
-.promo-code-field:focus {
-  border: 1px solid #999;
-}
-
-.promo-code-cta {
-  border-radius: 4px;
-  font-size: 0.625rem;
-  margin-left: 0.625rem;
-  padding: 0.6875rem 1.25rem 0.625rem;
-}
-
 .basket-labels {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -170,13 +144,6 @@ li.subtotal:before {
   width: 15%;
 }
 
-.price{
-  font-size: 26px;
-  float: right;
-  right: 0;
-  text-align: right;
-  width: 45%;
-}
 
 .subtotal {
   text-align: right;
@@ -293,25 +260,6 @@ aside {
   color: #111;
   float: left;
   width: 50%;
-}
-
-.summary-promo {
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  -o-transition: all .3s ease;
-  transition: all .3s ease;
-}
-
-.promo-title {
-  float: left;
-  width: 70%;
-}
-
-.promo-value {
-  color: #8B0000;
-  float: left;
-  text-align: right;
-  width: 30%;
 }
 
 .summary-delivery {
@@ -437,11 +385,36 @@ aside {
 
 .title{
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 27px;
   line-height: 48px;
   margin-top: 20px;
   margin-bottom: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 8px;
+}
+
+.product-title{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.product-dimensions{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  margin-top: 5px;
+  color: #65635F;
+
+}
+
+.product-price{
+  font-size: 26px;
+  float: right;
+  right: 0;
+  text-align: right;
+  width: 45%;
 }

@@ -19,7 +19,7 @@ export class Address{
 
   toString(): string{
     if(this.street.length>0 && this.city.length>0 && this.country.length>0 && this.zipCode.length>0)
-    return this.street.toString() + "\n" + this.city.toString() + ", " + this.zipCode.toString() +  "\n" + this.country.toString()
+    return this.street.toString() + "<br>"+ this.city.toString() + ", " + this.zipCode.toString() +  "<br>" + this.country.toString()
 
     else return "";
   }
