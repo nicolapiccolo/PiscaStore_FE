@@ -114,7 +114,6 @@ export class ProductDetailsComponent implements OnInit {
 
    addToCart() {
     if (this.product != null) {
-
       if (this.tokenStorage.isValid()) {
         if (this.cartService.addToCart(this.product)) {
           const success = this.openSuccess("Aggiunto", "Articolo aggiunto al carrello")
