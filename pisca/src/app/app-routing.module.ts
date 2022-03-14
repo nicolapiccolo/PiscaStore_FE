@@ -17,6 +17,7 @@ import {CartComponent} from "./cart/cart.component";
 import {PaymentOrderComponent} from "./payment-order/payment-order.component";
 import {CheckoutOrderComponent} from "./checkout-order/checkout-order.component";
 import {ProfileOrdersComponent} from "./profile-orders/profile-orders.component";
+import {ProfileAddressComponent} from "./profile-address/profile-address.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canDeactivate:[CanDeactivateGuard]},
+  { path: 'profile_address', component: ProfileAddressComponent},
   { path: 'user', component: BoardUserComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'profile_edit', component: ProfileEditComponent},
