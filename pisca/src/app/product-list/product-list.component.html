@@ -10,6 +10,13 @@
   </div>
 
 
+  <div class="bread-catalog">
+    <ul class="breadcrumbs">
+      <li class="breadcrumb-item"><a href="/catalog">Catalogo</a></li>
+      <li class="breadcrumb-item active">{{category}}</li>
+    </ul>
+  </div>
+
   <div class="grid" *ngIf="!(loading$ | async)">
 
     <div class="empty-list" *ngIf="isEmpty">

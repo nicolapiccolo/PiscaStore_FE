@@ -19,7 +19,7 @@ a:hover {
 }
 
 .section-products {
-  padding: 80px 0 54px;
+  padding: 20px 0 54px;
 }
 
 .section-products .single-product {
@@ -63,4 +63,31 @@ a:hover {
   transform: translate(-50%, -50%);
   z-index: 5;
   align-items: center;
+}
+
+.bread-catalog{
+  margin-left: 200px;
+  margin-bottom: 60px;
+  margin-top:0px;
+}
+
+.bread-catalog ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bread-catalog li {
+  float: left;
+}
+
+
+.bread-catalog a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+.bread-catalog a:hover{
+  color: orange;
 }

@@ -17,6 +17,9 @@ export class ProductListComponent implements OnInit {
 
   isEmpty = false;
 
+  category : string = ''
+
+  categories: Array<string> = ['Vasi','Dipinti','Altro','Artigianato']
 
   constructor(private productListService: ProductService,
               public loader: LoadingService,
@@ -31,6 +34,7 @@ export class ProductListComponent implements OnInit {
 
       console.log("ID:",id)
       if(id>0){
+        this.category=this.categories[id-1];
         this.productListService.findByCategory(id).subscribe(data => {
           if(data.length>0){
             this.products = data
@@ -40,6 +44,7 @@ export class ProductListComponent implements OnInit {
       }
     }
     else{
+      this.category = 'Tutti i prodotti'
       this.productListService.findAll().subscribe(data => {
         if(data.length>0){
           this.products = data
