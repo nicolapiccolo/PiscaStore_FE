@@ -6,14 +6,6 @@ body{
   color: #444444;
 }
 
-.panel{
-  margin-top: 20px;
-  margin-left: 200px;
-  margin-right: 200px;
-  align-content: center;
-  align-items: center;
-}
-
 .panel .no-product{
   font-style: normal;
   font-weight: normal;
@@ -24,12 +16,12 @@ body{
 .panel .title {
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 27px;
   line-height: 48px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 0.8em;
   padding-bottom: 8px;
+  margin-top:40px;
 }
 
 .product-list{

@@ -21,17 +21,6 @@ body{
   line-height: 25px;
 }
 
-.panel .title {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 48px;
-  margin-bottom: 50px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 0.8em;
-  padding-bottom: 8px;
-}
-
 .product-list{
   margin: 20px;
 }

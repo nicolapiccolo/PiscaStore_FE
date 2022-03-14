@@ -12,6 +12,15 @@
 
 
     <div class="order-list" *ngIf="!(loading$ | async)">
+
+      <div class="bread">
+        <ul class="breadcrumbs">
+          <li class="breadcrumb-item"><a href="/profile">Il mio profilo</a></li>
+          <li class="breadcrumb-item active">I miei ordini</li>
+        </ul>
+      </div>
+
+
       <h3 class="title">I miei ordini</h3>
 
       <div class="empty-list" *ngIf="isEmpty">
