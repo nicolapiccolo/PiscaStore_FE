@@ -127,11 +127,12 @@ export class CheckoutOrderComponent implements OnInit {
   }
 
   modifyAddress() {
-    const modalRef = this.modalService.open(ModalAddress);
+    let modalRef = this.modalService.open(ModalAddress);
     modalRef.result.then((data) => {
       // on close ok
       console.log("closed")
-      this.currentAddress = data;
+      if(data === "newAddress") modalRef = this.modalService.open(ModalAddress);
+      else this.currentAddress = data;
     }, (reason) => {
       // on dismiss x close
       console.log("dismiss")

@@ -16,7 +16,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
       <button type="button" class="btn btn-danger" (click)="modal.close('Ok click')">Ok</button>
     </div>
   `,
-  styleUrls: ['./modal.css']
+  styleUrls: ['./modal.scss']
 
 })
 export class ModalSuccess {

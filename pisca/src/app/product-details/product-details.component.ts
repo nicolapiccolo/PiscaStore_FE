@@ -8,7 +8,7 @@ import {ProductData} from "../model/productData";
 import {Author} from "../model/author";
 import {LoadingService} from "../service/loading.service";
 import {Category} from "../model/category";
-import {NgbCarouselConfig, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCarouselConfig, NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {CartService} from "../service/cart.service";
 import {ModalSuccess} from "../modal/modalSuccess";
 import {ModalError} from "../modal/modalError";
@@ -117,21 +117,30 @@ export class ProductDetailsComponent implements OnInit {
 
       if (this.tokenStorage.isValid()) {
         if (this.cartService.addToCart(this.product)) {
-          this.openSuccess("Aggiunto", "Articolo aggiunto al carrello")
+          const success = this.openSuccess("Aggiunto", "Articolo aggiunto al carrello")
+          success.result.then((data) => {
+              window.location.reload()
+          });
           this.bagEvent.emit(this.cartService.getSize())
         } else this.openError("Errore", "", "L' articolo è già presente nel carrello", "")
-      }
-      else this.openError("Non sei loggato", "", "Per aggiungere un oggetto al carrello dei prima effettuare il login", "")
 
+      }
+
+      else this.openError("Non sei loggato", "", "Per aggiungere un oggetto al carrello dei prima effettuare il login", "")
 
     }
   }
 
 
   openSuccess(title: string, message: string) {
-    const modalRef = this.modalService.open(ModalSuccess);
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop: 'static',
+      keyboard: false
+    };
+    const modalRef = this.modalService.open(ModalSuccess, ngbModalOptions);
     modalRef.componentInstance.title = title
     modalRef.componentInstance.message = message;
+    return modalRef;
   }
 
   openError(title: string, name: string, error: string, error_code: string) {

@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="cart-pane" *ngIf="!(loading$ | async) && isSuccess">
+  <div class="cart-pane" *ngIf="!(loading$ | async) && !isSuccess">
 
     <h3 class="title">Riepilogo ordine ({{strTotal}})</h3>
     <div class="basket">
@@ -34,18 +34,17 @@
           <li class="index"><strong>2 Modalità di pagamento</strong></li>
         </div>
         <div class="col col-center">
-          <li class="field">VISA</li>
+          <li class="field"></li>
         </div>
         <div class="col col-right">
-          <li class="modify">Modifica</li>
+          <li><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" /></li>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <li class="index"><strong>3 Rivedi gli articoli</strong></li>
         </div>
-      </div>
-      <div class="basket basket-bottom">
+
         <ng-container *ngFor="let product of products">
           <div class="basket-product">
             <div class="item">
@@ -53,11 +52,11 @@
                 <!--<img src="http://localhost:8080/catalog/api/v1/image/{{product.image}}" onerror="this.src='http://localhost:8080/catalog/api/v1/image/not.png'"  class="product-frame">-->
               </div>
               <div class="product-details">
-                <h5><strong>{{product.name}}</strong></h5>
+                <h5>{{product.name}}</h5>
                 <p>{{product.dimensions}}</p>
               </div>
             </div>
-            <div class="price"><strong>{{ product.price | currency: 'EUR'}}</strong></div>
+            <div class="price">{{ product.price | currency: 'EUR'}}</div>
           </div>
         </ng-container>
       </div>
@@ -76,10 +75,10 @@
     </aside>
 
   </div>
-  <div class="order-success" *ngIf="!isSuccess">
+  <div class="order-success" *ngIf="isSuccess">
     <h4 class="text-center">Ordine completato, ritorna alla home!</h4>
     <h3 class="text-center" href="home" >Torna alla home</h3>
-    <!--<img src="assets/Images/complete.jpg" width="128" height="128" alt="complete">-->
+    <img src="assets/Images/complete.jpg" width="128" height="128" alt="complete">
   </div>
 </main>
 </body>

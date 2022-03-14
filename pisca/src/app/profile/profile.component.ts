@@ -24,10 +24,10 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
   surname: string = ""
   email: string = ""
   phone: string = ""
-  street: string = ""
-  city: string = ""
-  country: string = ""
-  zipCode: string = ""
+  //street: string = ""
+  //city: string = ""
+  //country: string = ""
+  //zipCode: string = ""
 
 
 
@@ -75,11 +75,11 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     //const { name, email, phone} = this.form;
     console.log(this.form.submitted)
 
-    var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
+    //var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
 
     console.log('updating');
 
-    var addresses : Address[] =  [address];
+    //var addresses : Address[] =  [address];
 
     //var body = this.name
 
@@ -92,7 +92,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
 
 
-    this.accountService.updateUser(    {name,surname,email,phone, addresses}
+    this.accountService.updateUser(    {name,surname,email,phone}
     ).subscribe(
       data => {
         console.log(data);
@@ -109,7 +109,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
         this.isSignUpFailed = false;
       },
       err => {
-        this.errorMessage = err.error.message;
+        this .errorMessage = err.error.message;
         this.isSignUpFailed = true;
       }
     );*/
@@ -121,15 +121,6 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     this.email = this.currentUser.email;
     this.phone = this.currentUser.phone;
     this.surname = this.currentUser.surname;
-
-    if(this.address !== null){
-
-      this.street = this.address.street;
-      this.zipCode = this.address.zipCode;
-      this.city = this.address.city;
-      this.country = this.address.country;
-
-    }
 
   }
 
