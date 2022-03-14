@@ -62,24 +62,25 @@ export class ProfileOrdersComponent implements OnInit {
       console.log(data)
       this.orders = data
 
-      for(let order of this.orders){
-        let products = new Array<Product>();
-        for(let item of order.items){
-          console.log(item)
-          const p = await this.getProduct(item.id_product);
-          console.log("Product: ", p)
-          products.push(new Product(p.product.id,p.product.name,p.product.description,p.product.dimensions,p.product.price,true,p.product.image));
-          //order.products.push(p)
-        }
-        order.products = products;
-        order.total = this.getTotalPrice(products);
+      if(this.orders.length>0){
+        for(let order of this.orders){
+          let products = new Array<Product>();
+          for(let item of order.items){
+            console.log(item)
+            const p = await this.getProduct(item.id_product);
+            console.log("Product: ", p)
+            products.push(new Product(p.product.id,p.product.name,p.product.description,p.product.dimensions,p.product.price,true,p.product.image));
+            //order.products.push(p)
+          }
+          order.products = products;
+          order.total = this.getTotalPrice(products);
 
-        const add = await this.getAddress(order.id_address)
-        if(add!=null){
-          order.address = add;
+          const add = await this.getAddress(order.id_address)
+          if(add!=null){
+            order.address = add;
+          }
         }
-
-      }
+      }else this.isEmpty = true
     },
     err=>{
       console.log(err)
@@ -93,6 +94,7 @@ export class ProfileOrdersComponent implements OnInit {
 
   private async getAddress(address: number){
     const data = await this.accountService.getAddressById(address).toPromise();
+    console.log("ADDRESS:", data)
     if(data!=null){
       return new Address(data.id,data.street,data.city,data.country,data.zipCode)
     }

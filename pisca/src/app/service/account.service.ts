@@ -40,6 +40,10 @@ export class AccountService {
   deleteAddress(id: number): Observable<any>{
     return this.http.get(AUTH_API + 'address/delete/' + id, httpOptions)
   }
+  
+  getCurrentInfo(): Observable<any> {
+    return this.http.get(AUTH_API + 'current/info', httpOptions);
+  }
 
   updateUser(data: any) : Observable<any>{
     console.log(data)

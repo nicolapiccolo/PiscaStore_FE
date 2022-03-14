@@ -49,8 +49,15 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     console.log("Profile on init")
 
     this.isEditing = false;
-    this.currentUser = this.token.getUser();
 
+    this.accountService.getCurrentInfo().subscribe(
+      data=> {
+        console.log("USER: ",data);
+        this.currentUser = data
+      }
+    )
+
+    /*
     this.accountService.getAddresses().subscribe(
       data => {
         this.addressAvailable = true;
@@ -69,7 +76,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
         console.log("Errore: Indirizzo non disponibile")
         //this.currentUser.addresss = JSON.parse(err.error).message;
       }
-    );
+    );*/
   }
 
 
@@ -101,8 +108,6 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
       //var body = this.name
 
-      var formData: any = new FormData();
-
 
       const name = this.name
       const surname = this.surname
@@ -122,7 +127,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
           });
         },
         err => {
-          this.openError("Errore aggiornamento","","Non è stato possibile aggiornare le informazioni del tuo profilo","ERR_UPDATE"+err.toString())
+          this.openError("Errore aggiornamento","","Non è stato possibile aggiornare le informazioni del tuo profilo","ERR_UPDATE "+err.toString())
           console.log(err);
         }
       )

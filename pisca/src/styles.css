@@ -27,6 +27,8 @@ body { margin: 0; font-family: Inter, "Inter", sans-serif; }
   color: orange;
 }
 
+
+
 .spinner {
   position: absolute;
   top: 50%;
@@ -57,13 +59,20 @@ body { margin: 0; font-family: Inter, "Inter", sans-serif; }
 }
 
 .panel .title {
+
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 27px;
   line-height: 48px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 8px;
 }
 
+.no-product{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 25px;
+}

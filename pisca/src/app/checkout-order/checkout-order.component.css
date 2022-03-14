@@ -10,7 +10,6 @@ html a {
   background-color: #fff;
   color: black;
   font-family: 'Inter';
-  font-size: 62.5%;
   margin-top: 50px;
 }
 
@@ -185,10 +184,7 @@ li.subtotal:before {
   width: 45%;
 }
 
-.field{
-  font-size: 20px;
-  text-align: center;
-}
+
 
 .row{
   border-bottom: 1px solid #ccc;
@@ -530,3 +526,67 @@ body {
   box-shadow: 0px 15px 40px 5px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
+.title{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 48px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 8px;
+}
+
+.product-title{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.product-dimensions{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 24px;
+  margin-top: 5px;
+  color: #65635F;
+
+}
+
+.product-price{
+  font-size: 26px;
+  float: right;
+  font-style: normal;
+  font-weight: 500;
+  right: 0;
+  text-align: right;
+  width: 45%;
+}
+
+.main-pane{
+  margin-top: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  align-content: center;
+  align-items: center;
+}
+
+.product-list{
+  margin-left: 60px;
+  margin-right: 60px;
+
+}
+
+.field{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 25px;
+  color: #65635F;
+}
+
+.order-success img {
+  width: 128px;
+  height: 128px;
+}
