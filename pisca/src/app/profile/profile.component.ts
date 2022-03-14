@@ -93,37 +93,17 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
     modalRef.result.then((data) => {
       console.log(this.form.submitted)
 
-      var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
+      //var address : Address = new Address(0,this.street,this.city, this.country, this.zipCode);
 
       console.log('updating');
 
-      var addresses : Address[] =  [address];
+      //var addresses : Address[] =  [address];
 
       //var body = this.name
 
       var formData: any = new FormData();
 
-    /*this.accountService.updateUser(    {name,surname,email,phone}
-    ).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    )
 
-    this.authService.register(name, surname, username, email, password, phone, address).subscribe(
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      err => {
-        this .errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
-    );*/
       const name = this.name
       const surname = this.surname
       const email = this.email
@@ -131,7 +111,7 @@ export class ProfileComponent extends FormCanDeactivate implements OnInit {
 
 
 
-      this.accountService.updateUser(    {name,surname,email,phone, addresses}
+      this.accountService.updateUser(    {name,surname,email,phone}
       ).subscribe(
         data => {
           console.log(data);
