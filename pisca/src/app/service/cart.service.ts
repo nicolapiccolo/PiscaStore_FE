@@ -7,16 +7,15 @@ import {TokenStorageService} from "./token-storage.service";
 })
 export class CartService {
 
-  products: Array<Product> = new Array()
+  products: Array<Product> = new Array<Product>();
 
   constructor(private tokenStorage: TokenStorageService) {
-    this.products = this.tokenStorage.getProduct()
   }
 
   addToCart(product: Product){
     console.log(this.products)
 
-    if(this.tokenStorage.getProduct() !=null){
+    if(this.tokenStorage.getProduct() != null){
       this.products = this.tokenStorage.getProduct()
       const present = this.checkIfPresent(product.id)
       if(!present) this.products.push(product)
